@@ -304,7 +304,12 @@
             },
         });
 
+        swiper.on('beforeSlideChangeStart', (event) => {
+            // change URI before going to next slide
+        });
+
         swiper.on('reachEnd', () => {
+            swiper.disable();
             // fetch articles here
             axios.post('/api/articles', {
                 // post params here
@@ -313,10 +318,16 @@
                 .then(function ({ data }) {
                     // handle success
                     console.log(data);
+                    // append slide
+                    swiper.appendSlide([
+                        `slide one`, `slide two` // construct slide html 
+                    ])
+                    swiper.enable();
                 })
                 .catch(function (error) {
                     // handle error
                     console.log(error);
+                    swiper.enable();
                 })
                 
         });
