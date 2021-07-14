@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routine of Nepal Banda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Mukta:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./tailwind.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        @media screen and (min-width: 1024px) {
+            .categorySlider {
+                overflow: inherit;
+            }
+        }
+
+        .swiper-button-next,
+        .swiper-container-rtl .swiper-button-prev {
+            right: -50px;
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+        }
+
+        .swiper-button-next:after,
+        .swiper-container-rtl .swiper-button-prev:after,
+        .swiper-button-prev:after,
+        .swiper-container-rtl .swiper-button-next:after {
+            content: none;
+        }
+
+        .swiper-button-next.swiper-button-disabled,
+        .swiper-button-prev.swiper-button-disabled {
+            color: #999;
+            background-color: #DEDEDE;
+        }
+
+        .swiper-button-prev,
+        .swiper-container-rtl .swiper-button-next {
+            left: -50px;
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+        }
+    </style>
+</head>
+
+<body class="antialised relative bg-gray-50 " x-data="data()">
+    <div id="sentinel"></div>
+
+    <!-- Header start -->
+    <header class="bg-white shadow mb-8">
+        <div class="max-w-6xl mx-auto flex items-center">
+            <!-- Logo -->
+            <a href="" class="px-3 md:px-0">
+                <img class="w-12 h-12" src="./img/logo.jpg">
+            </a>
+            <span class="flex-1"></span>
+            <!-- Primary Navigation Menu-->
+            <nav class="hidden md:flex items-center">
+                <div class="relative dropdown group z-20">
+                    <a href="/"
+                        class="inline-flex items-center space-x-1 px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                        <span>News</span>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <div class="
+                            opacity-0 
+                            invisible 
+                            group-hover:opacity-100 
+                            group-hover:visible 
+                            group-hover:scale-100  
+                            dropdown-menu 
+                            transition-all 
+                            duration-300 
+                            transform 
+                            origin-top-right 
+                            -translate-y-2 
+                            scale-95
+                            ">
+                        <ul class="absolute right-0 w-56 py-2 origin-top-right bg-white  shadow-lg outline-none "
+                            aria-labelledby="menu-button-1" id="menu-items-117" role="menu">
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    Match Center
+                </a>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    Series
+                </a>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    Teams
+                </a>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    Players
+                </a>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    More
+                </a>
+            </nav>
+            <button @click="openSideMenu()" class="inline-flex px-5 py-4 ml-4 bg-red-600 text-white font-medium text-sm uppercase">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Side Menu -->
+    <div :class="isSideMenuOpen ? 'translate-x-0' : 'translate-x-full'" 
+        class="fixed top-0 right-0 w-full md:w-72 min-h-screen bg-white z-50 shadow-lg transform -translate-x-full transition-all duration-200 ease-in-out" style="display: none;" :style="isSideMenuOpen ? 'display:block':''">
+        <div class="flex flex-wrap justify-between ">
+            <!-- Logo SideMenu -->
+            <a href="" class="px-2 py-1">
+                <img class="w-12 h-12" src="./img/logo.jpg">
+            </a>
+            <!-- Logo SideMenu End -->
+            <button @click="closeSideMenu()" class="w-12 h-12 bg-red-600 text-white inline-flex items-center justify-center ">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+    <!-- Side Menu -->
+
+    <main class="max-w-6xl mx-auto px-4 md:px-6 lg:px-0">
+        <!-- Main News Start-->
+        <article class="bg-white shadow relative overflow-hidden mb-8">
+            <header class="text-center py-4 px-4">
+                <span
+                    class="inline-block font-mukta mb-2 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">लकडाउन
+                    अपडेट</span>
+                <h1 class="font-mukta text-2xl md:text-6xl font-bold text-gray-800 leading-normal">
+                    <a href="/articles/1444145" class="transition-all duration-300 hover:text-red-600">
+                        काठमाडौं उपत्यकामा चल्न थाले सार्वजनिक बस
+                    </a>
+                </h1>
+                <div class="inline-flex gap-6">
+                    <span class="inline-flex items-center gap-1 text-gray-500 text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        29 min ago</span>
+                    <button class="inline-flex items-center gap-1 text-gray-500 text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                            </path>
+                        </svg>
+                        Share</button>
+                </div>
+            </header>
+            <figure class="mb-0 bg-gray-50 max-h-60 overflow-hidden rounded-md">
+                <a href="/articles/1444145" class="block">
+                    <img class="w-full h-full object-contain object-center"
+                        src="https://www.onlinekhabar.com/wp-content/uploads/2020/03/internet-isp.jpg">
+                </a>
+            </figure>
+            <p class="font-mukta text-md text-gray-500 px-4 py-4 text-center leading-snug"> विगत करीब डेढ वर्षदेखि
+                विश्वभर नै अधिकांश व्यवसाय कोभिड-१९को महामारीसँग जुधिरहेको छ । तर, यही महामारीका बीचमा नेपालमा इन्टरनेट
+                व्यवसायमा भने उछाल नै आयो । २०७७ वैशाखदेखि २०७८ वैशाखसम्म एक वर्षका बीचमा मात्रै ५८ लाख इन्टरनेट ग्राहक
+                थपिएका छन् ।</p>
+        </article>
+        <!-- Main News End -->
+
+        <!-- Fullwidth Ad -->
+        <div class="my-6">
+            <a href="">
+                <img class="max-w-full"
+                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/06/ONLINE-KHABAR-1230-X-100_1.gif">
+            </a>
+        </div>
+        <!-- Fullwidth Ad End -->
+
+        <!-- Category News Slider -->
+        <div class="swiper-container categorySlider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <!-- Category Block Start -->
+                    <div class="category">
+                        <!-- Category Title -->
+                        <div
+                            class="flex items-center justify-between px-4 py-4 bg-white shadow-md rounded-tl-xl rounded-tr-xl">
+                            <h2 class="font-poppins font-bold text-base text-gray-800">प्रदेश १</h2>
+                            <a href="" class="inline-flex items-center gap-1 text-gray-500 hover:text-red-500">
+                                <span class="text-sm">More</span> <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                        <!-- Category Title End -->
+                        <template x-for="(article, index) in articles">
+                            <div>
+                                <template x-if="index == 0">
+                                    <!-- Article Big -->
+                                    <article id="post-11" class="relative mb-6 -mt-2">
+                                        <figure class="mb-0 overflow-hidden rounded-xl h-56">
+                                            <img class="w-full h-full object-cover"
+                                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
+                                            <span class="absolute inset-0 bg-black opacity-50 rounded-xl"></span>
+                                        </figure>
+                                        <div class="absolute bottom-0 px-4 py-4">
+                                            <span
+                                                class="font-light text-xs text-white bg-white rounded px-1 pb-0.5 bg-opacity-30 text-opacity-80 backdrop-filter backdrop-blur-lg mix-blend-overlay">10min
+                                                ago</span>
+                                            <h2 class="font-mukta font-semibold text-lg text-white"><a href=""
+                                                    class="">बीपी प्रतिष्ठानमा अनियमितता बढेको भन्दै
+                                                    शिक्षक-कर्मचारी रिले अनसनमा</a></h2>
+                                        </div>
+                                    </article>
+                                    <!-- Article Big End -->
+                                </template>
+
+                                <!-- Article Small -->
+                                <template x-if="index > 0">
+                                    <article class="flex flex-wrap gap-4 group mb-6">
+                                        <figure
+                                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                                            <a href="">
+                                                <img class="w-full h-full object-cover" x-bind:src="article.thumb">
+                                            </a>
+                                        </figure>
+                                        <div class="flex-1">
+                                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a
+                                                    href="" class="transition duration-200 group-hover:text-red-600"
+                                                    x-text="article.title"></a></h2>
+                                        </div>
+                                    </article>
+                                </template>
+                                <!-- Article Small End -->
+                            </div>
+                        </template>
+                    </div>
+                    <!-- Category Block End -->
+                </div>
+                <div class="swiper-slide">
+                    <!-- Category Block Start -->
+                    <div class="category">
+                        <!-- Category Title -->
+                        <div
+                            class="flex items-center justify-between px-4 py-4 bg-white shadow-md rounded-tl-xl rounded-tr-xl">
+                            <h2 class="font-poppins font-bold text-base text-gray-800">प्रदेश १</h2>
+                            <a href="" class="inline-flex items-center gap-1 text-gray-500 hover:text-red-500">
+                                <span class="text-sm">More</span> <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                        <!-- Category Title End -->
+                        <template x-for="(article, index) in articles">
+                            <div>
+                                <template x-if="index == 0">
+                                    <!-- Article Big -->
+                                    <article id="post-11" class="relative mb-6 -mt-2">
+                                        <figure class="mb-0 overflow-hidden rounded-xl h-56">
+                                            <img class="w-full h-full object-cover"
+                                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
+                                            <span class="absolute inset-0 bg-black opacity-50 rounded-xl"></span>
+                                        </figure>
+                                        <div class="absolute bottom-0 px-4 py-4">
+                                            <span
+                                                class="font-light text-xs text-white bg-white rounded px-1 pb-0.5 bg-opacity-30 text-opacity-80 backdrop-filter backdrop-blur-lg mix-blend-overlay">10min
+                                                ago</span>
+                                            <h2 class="font-mukta font-semibold text-lg text-white"><a href="">बीपी
+                                                    प्रतिष्ठानमा अनियमितता बढेको भन्दै शिक्षक-कर्मचारी रिले अनसनमा</a>
+                                            </h2>
+                                        </div>
+                                    </article>
+                                    <!-- Article Big End -->
+                                </template>
+
+                                <!-- Article Small -->
+                                <template x-if="index > 0">
+                                    <article class="flex flex-wrap gap-4 group mb-6">
+                                        <figure
+                                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                                            <a href="">
+                                                <img class="w-full h-full object-cover" x-bind:src="article.thumb">
+                                            </a>
+                                        </figure>
+                                        <div class="flex-1">
+                                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a
+                                                    href="" class="transition duration-200 group-hover:text-red-600"
+                                                    x-text="article.title"></a></h2>
+                                        </div>
+                                    </article>
+                                </template>
+                                <!-- Article Small End -->
+                            </div>
+                        </template>
+                    </div>
+                    <!-- Category Block End -->
+                </div>
+                <div class="swiper-slide">
+                    <!-- Category Block Start -->
+                    <div class="category">
+                        <!-- Category Title -->
+                        <div
+                            class="flex items-center justify-between px-4 py-4 bg-white shadow-md rounded-tl-xl rounded-tr-xl">
+                            <h2 class="font-poppins font-bold text-base text-gray-800">प्रदेश १</h2>
+                            <a href="" class="inline-flex items-center gap-1 text-gray-500 hover:text-red-500">
+                                <span class="text-sm">More</span> <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                        <!-- Category Title End -->
+                        <template x-for="(article, index) in articles">
+                            <div>
+                                <template x-if="index == 0">
+                                    <!-- Article Big -->
+                                    <article id="post-11" class="relative mb-6 -mt-2">
+                                        <figure class="mb-0 overflow-hidden rounded-xl h-56">
+                                            <img class="w-full h-full object-cover"
+                                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
+                                            <span class="absolute inset-0 bg-black opacity-50 rounded-xl"></span>
+                                        </figure>
+                                        <div class="absolute bottom-0 px-4 py-4">
+                                            <span
+                                                class="font-light text-xs text-white bg-white rounded px-1 pb-0.5 bg-opacity-30 text-opacity-80 backdrop-filter backdrop-blur-lg mix-blend-overlay">10min
+                                                ago</span>
+                                            <h2 class="font-mukta font-semibold text-lg text-white"><a href="">बीपी
+                                                    प्रतिष्ठानमा अनियमितता बढेको भन्दै शिक्षक-कर्मचारी रिले अनसनमा</a>
+                                            </h2>
+                                        </div>
+                                    </article>
+                                    <!-- Article Big End -->
+                                </template>
+
+                                <!-- Article Small -->
+                                <template x-if="index > 0">
+                                    <article class="flex flex-wrap gap-4 group mb-6">
+                                        <figure
+                                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                                            <a href="">
+                                                <img class="w-full h-full object-cover" x-bind:src="article.thumb">
+                                            </a>
+                                        </figure>
+                                        <div class="flex-1">
+                                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a
+                                                    href="" class="transition duration-200 group-hover:text-red-600"
+                                                    x-text="article.title"></a></h2>
+                                        </div>
+                                    </article>
+                                </template>
+                                <!-- Article Small End -->
+                            </div>
+                        </template>
+                    </div>
+                    <!-- Category Block End -->
+                </div>
+                <div class="swiper-slide">
+                    <!-- Category Block Start -->
+                    <div class="category">
+                        <!-- Category Title -->
+                        <div
+                            class="flex items-center justify-between px-4 py-4 bg-white shadow-md rounded-tl-xl rounded-tr-xl">
+                            <h2 class="font-poppins font-bold text-base text-gray-800">प्रदेश १</h2>
+                            <a href="" class="inline-flex items-center gap-1 text-gray-500 hover:text-red-500">
+                                <span class="text-sm">More</span> <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                        <!-- Category Title End -->
+                        <template x-for="(article, index) in articles">
+                            <div>
+                                <template x-if="index == 0">
+                                    <!-- Article Big -->
+                                    <article id="post-11" class="relative mb-6 -mt-2">
+                                        <figure class="mb-0 overflow-hidden rounded-xl h-56">
+                                            <img class="w-full h-full object-cover"
+                                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
+                                            <span class="absolute inset-0 bg-black opacity-50 rounded-xl"></span>
+                                        </figure>
+                                        <div class="absolute bottom-0 px-4 py-4">
+                                            <span
+                                                class="font-light text-xs text-white bg-white rounded px-1 pb-0.5 bg-opacity-30 text-opacity-80 backdrop-filter backdrop-blur-lg mix-blend-overlay">10min
+                                                ago</span>
+                                            <h2 class="font-mukta font-semibold text-lg text-white"><a href="">बीपी
+                                                    प्रतिष्ठानमा अनियमितता बढेको भन्दै शिक्षक-कर्मचारी रिले अनसनमा</a>
+                                            </h2>
+                                        </div>
+                                    </article>
+                                    <!-- Article Big End -->
+                                </template>
+
+                                <!-- Article Small -->
+                                <template x-if="index > 0">
+                                    <article class="flex flex-wrap gap-4 group mb-6">
+                                        <figure
+                                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                                            <a href="">
+                                                <img class="w-full h-full object-cover" x-bind:src="article.thumb">
+                                            </a>
+                                        </figure>
+                                        <div class="flex-1">
+                                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a
+                                                    href="" class="transition duration-200 group-hover:text-red-600"
+                                                    x-text="article.title"></a></h2>
+                                        </div>
+                                    </article>
+                                </template>
+                                <!-- Article Small End -->
+                            </div>
+                        </template>
+                    </div>
+                    <!-- Category Block End -->
+                </div>
+
+            </div>
+            <div class="swiper-button-next">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </div>
+            <div class="swiper-button-prev">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </div>
+        </div>
+        <!-- Category News Slider End -->
+
+        <!-- Fullwidth Ad -->
+        <div class="my-6">
+            <a href="">
+                <img class="max-w-full"
+                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/06/ONLINE-KHABAR-1230-X-100_1.gif">
+            </a>
+        </div>
+        <!-- Fullwidth Ad End -->
+
+        <div class="swiper-container mySwiper min-h-screen max-h-screen overflow-hidden" style="position: sticky;top:60px;">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide flex items-center">
+                    <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
+                        <figure
+                            class="w-full md:w-5/12 h-84 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                            <a href="">
+                                <img class="w-full h-full object-cover"
+                                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Chandrapur-Jhadap-900-300x200.jpg">
+                            </a>
+                        </figure>
+                        <div class="flex-1 py-4 px-4 md:py-6">
+                            <span
+                                class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Technology</span>
+                            <h2 class="font-semibold text-2xl text-gray-700 mb-2">
+                                <a href="" class="transition duration-200 group-hover:text-red-600">तपाईंको कम्प्युटरमा
+                                    विन्डोज
+                                    ११ चल्छ कि चल्दैन ? यसरी थाहा पाउनुहोस्</a>
+                            </h2>
+                            <div class="flex items-center mb-2 gap-5">
+                                <time class="text-gray-500 text-xs">Jun 23, 2021 11:45 AM</time>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-yellow-500 inline-flex items-center justify-center">
+                                    <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <path
+                                            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+                                    </svg>
+                                </button>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-blue-600 inline-flex items-center justify-center text-white">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <p class="text-sm text-gray-500 leading-6 text-justify md:text-left">माइक्रोसफ्टले गत
+                                बिहीबार आफ्नो नयाँ संस्करणको
+                                विन्डोज
+                                अपरेटिङ सिस्टम विन्डोज ११ सार्वजनिक गर्‍यो । कम्पनीका अनुसार यो नयाँ अपरेटिङ सिस्टम
+                                विद्यमान
+                                विन्डोज १० कम्प्युटरमा नि:शुल्क रुपमा अपग्रेड गर्न सकिनेछ । यो अंग्रेजी वर्षको
+                                अन्त्यसम्ममा
+                                विन्डोज ११ आम प्रयोगकर्ताका लागि उपलब्ध हुने बताइएको छ । विन्डोज ११ अपरेटिङ सिस्टम
+                                चल्नका लागि
+                                कम्प्युटरमा निश्चित न्यूनतम हार्डवेयर हुनैपर्नेछ । अर्थात् विन्डोज ११ चल्नका लागि
+                                तपाईंको
+                                ल्यापटप तथा डेस्कटपमा ४ जिबीको र्याम, ६४ जिबीको स्टोरेज तथा ६४ बिटको प्रोसेसर चाहिन्छ ।
+                            </p>
+                        </div>
+                    </article>
+                </div>
+                <div class="swiper-slide flex items-center">
+                    <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
+                        <figure
+                            class="w-full md:w-5/12 h-84 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                            <a href="">
+                                <img class="w-full h-full object-cover"
+                                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/01/devendra-raj-pandey-4.jpg">
+                            </a>
+                        </figure>
+                        <div class="flex-1 py-4 px-4 md:py-6">
+                            <span
+                                class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Politics</span>
+                            <h2 class="font-semibold text-2xl text-gray-700 mb-2">
+                                <a href="" class="transition duration-200 group-hover:text-red-600">प्रधानमन्त्री को बन्यो होइन, विधिको शासन ठूलो हो</a>
+                            </h2>
+                            <div class="flex items-center mb-2 gap-5">
+                                <time class="text-gray-500 text-xs">July 14, 2021 8:05 AM</time>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-yellow-500 inline-flex items-center justify-center">
+                                    <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <path
+                                            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+                                    </svg>
+                                </button>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-blue-600 inline-flex items-center justify-center text-white">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <p class="text-sm text-gray-500 leading-6 text-justify md:text-left">सर्वोच्च अदालतमा एक महिनासम्म चलेको मुद्दाको फैसलाले मंगलबार साँझ शेरबहादुर देउवा प्रधानमन्त्री भएका छन् । केपी शर्मा ओली बहिगर्मन भई देउवा सत्ताको केन्द्रमा आएका छन् । तर यहाँ व्यक्ति विशेषको कुरा गर्न आवश्यक नै छैन, किनभने कोही हामीले नचिनेको व्यक्ति हुँदै होइन ! सबैले चिनेजानेकै मानिस पदमा दोहोरिरहेका छन् । 
+                            </p>
+                        </div>
+                    </article>
+                </div>
+
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer start-->
+    <footer></footer>
+    <!-- Footer end -->
+    <div :class="isSideMenuOpen ? 'absolute' : 'hidden'" @click="closeSideMenu()" 
+        class="backdrop absolute inset-0 bg-black bg-opacity-40 transition-all duration-200 z-40"></div>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        function data() {
+            return {
+                articles: [
+                    { title: 'सर्लाहीमा पानी जमेको खाल्डोमा डुबेर एक जनाको मृत्यु', thumb: 'https://www.onlinekhabar.com/wp-content/uploads/2016/07/man-found-dead-at-late-congress-minister-300x176.jpg', url: '' },
+                    { title: 'स्कुटर चोरी गरेर भारत जाँदै गरेका एक व्यक्ति सप्तरीबाट पक्राउ', thumb: 'https://www.onlinekhabar.com/wp-content/uploads/2020/01/arrested-300x186.jpg', url: '' },
+                    { title: 'वीरगञ्जलाई स्मार्ट सिटी बनाउने सपना पूरा भएन : महानगर प्रमुख सरावगी', thumb: 'https://www.onlinekhabar.com/wp-content/uploads/2021/07/Sarbajanik-Sunuwai-Birgunj-300x183.jpg', url: '' },
+                    { title: 'पर्सामा ८ हजार ६ सय जनालाई भेरोसेलको दोस्रो मात्रा लगाइने', thumb: 'https://www.onlinekhabar.com/wp-content/uploads/2021/07/Vero-cell-vaccine-line-9-300x200.jpg', url: '' },
+                ],
+                isSideMenuOpen: false,
+                openSideMenu() {
+                    this.isSideMenuOpen = true;
+                },
+                closeSideMenu() {
+                    this.isSideMenuOpen = false;
+                },
+                toggleSideMenu() {
+                    this.isSideMenuOpen = !this.isSideMenuOpen;
+                }
+            }
+        }
+
+        var categorySlider = new Swiper(".categorySlider", {
+            slidesPerView: 4,
+            spaceBetween: 24,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                // when window width is >= 320px
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                // when window width is >= 480px
+                480: {
+                    slidesPerView: 1,
+                    spaceBetween: 24
+                },
+                // when window width is >= 640px
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 24
+                },
+                1020: {
+                    slidesPerView: 4,
+                    spaceBetween: 24
+                },
+            }
+        });
+
+        var swiper = new Swiper(".mySwiper", {
+            direction: "vertical",
+            autoHeight: true,
+            slidesPerView: 1,
+            // spaceBetween: 30,
+            grabCursor: true,
+            speed: 600,
+            effect: "slide",
+            mousewheel: {
+                releaseOnEdges: true,
+                // thresholdTime: 1200,
+                // thresholdDelta: 100,
+            },
+            breakpoints: {
+                640: {
+                    spaceBetween: 30
+                },
+                1020: {
+                    spaceBetween: 30
+                },
+            }
+        });
+
+        // window.onscroll = function (ev) {
+        //     if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) window.location = "swiper.html";
+        // };
+
+        // document.body.ontouchmove = function (e) {
+        //     if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) window.location = "swiper.html";
+        // };
+
+        // window.addEventListener('scroll', (event) => {
+        //     const swiperSection = document.querySelector('.mySwiper');
+
+        //     let scrollHeight = window.pageYOffset || document.documentElement.scrollTop;
+        //     let swipeSectionTop = swiperSection.offsetTop;
+
+        //     if((scrollHeight - swipeSectionTop) <= 0) {
+        //         swiperSection.classList.add('fixed', 'top-0');
+        //         swiperSection.classList.remove('hidden');
+        //     } else {
+        //         swiperSection.classList.remove('fixed', 'top-0');
+        //         swiperSection.classList.add('hidden');
+        //     }
+
+        //     console.log(scrollHeight, swipeSectionTop );
+        // });
+        const sentinelEl = document.getElementById('sentinel');
+        const swiperEl = document.querySelector('.mySwiper');
+
+        const handler = (entries) => {
+            if (swiperEl) {
+                console.log(entries);
+                if (!entries[0].isIntersecting) {
+                    swiperEl.classList.add('fixed', 'top-0', 'inset-0')
+                } else {
+                    swiperEl.classList.remove('fixed', 'top-0');
+                }
+            }
+        }
+
+        // const observer = new window.IntersectionObserver(handler);
+        // observer.observe(sentinelEl);
+
+    </script>
+</body>
+
+</html>
