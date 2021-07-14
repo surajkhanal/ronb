@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routine of Nepal Banda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Mukta:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./tailwind.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .swiper-container {
+            overflow-x: inherit;
+        }
+
+        [x-cloak] {
+            opacity: 0;
+            transition: all 300ms ease-in-out;
+        }
+    </style>
+</head>
+
+<body x-cloak class="antialised relative bg-gray-50 min-h-screen max-h-screen flex flex-col overflow-hidden"
+    x-data="data()">
+
+    <!-- Header start -->
+    <header class="bg-white shadow md:fixed inset-x-0 top-0 z-40">
+        <div class="max-w-6xl mx-auto flex items-center">
+            <!-- Logo -->
+            <a href="" class="px-3 md:px-0">
+                <img class="w-12 h-12" src="./img/logo.jpg">
+            </a>
+            <span class="flex-1"></span>
+            <!-- Primary Navigation Menu-->
+            <nav class="hidden md:flex items-center">
+                <div class="relative dropdown group z-20">
+                    <a href="/"
+                        class="inline-flex items-center space-x-1 px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                        <span>News</span>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <div class="
+                            opacity-0 
+                            invisible 
+                            group-hover:opacity-100 
+                            group-hover:visible 
+                            group-hover:scale-100  
+                            dropdown-menu 
+                            transition-all 
+                            duration-300 
+                            transform 
+                            origin-top-right 
+                            -translate-y-2 
+                            scale-95
+                            ">
+                        <ul class="absolute right-0 w-56 py-2 origin-top-right bg-white  shadow-lg outline-none "
+                            aria-labelledby="menu-button-1" id="menu-items-117" role="menu">
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                            <li><a href=""
+                                    class="block px-4 py-2 text-sm font-medium uppercase text-gray-500 hover:bg-gray-50 hover:text-red-600">Submenu
+                                    here</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    Match Center
+                </a>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    Series
+                </a>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    Teams
+                </a>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    Players
+                </a>
+                <a href="/" class="px-4 py-4 font-medium text-gray-500 text-sm uppercase hover:text-red-600">
+                    More
+                </a>
+            </nav>
+            <button @click="openSideMenu()"
+                class="inline-flex px-5 py-4 ml-4 bg-red-600 text-white font-medium text-sm uppercase">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Side Menu -->
+    <div :class="isSideMenuOpen ? 'translate-x-0' : 'translate-x-full'"
+        class="fixed top-0 right-0 w-full md:w-72 min-h-screen bg-white z-50 shadow-lg transform  transition-all duration-200 ease-in-out"
+        style="display: none;" :style="isSideMenuOpen ? 'display:block':''">
+        <div class="flex flex-wrap justify-between ">
+            <!-- Logo SideMenu -->
+            <a href="" class="px-2 py-1">
+                <img class="w-12 h-12" src="./img/logo.jpg">
+            </a>
+            <!-- Logo SideMenu End -->
+            <button @click="closeSideMenu()"
+                class="w-12 h-12 bg-red-600 text-white inline-flex items-center justify-center ">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <!-- Side Menu -->
+
+    <main class="px-4 md:px-6 lg:px-0 flex-1 ">
+
+        <div id="ronb_swiper" class="swiper-container mySwiper min-h-screen max-h-screen transition-all duration-300">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide max-w-6xl mx-auto flex items-center">
+                    <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
+                        <figure
+                            class="w-full md:w-5/12 h-84 md:h-96 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95 ">
+                            <img data-swiper-parallax="300" class="w-full h-full object-cover"
+                                src="https://img.dekhapadhi.de/uploads/posts/1610095412.South%20Korea%20-%20Republic%20-%20city%20life.jpeg">
+                        </figure>
+                        <div class="flex-1 py-4 px-4 md:pr-6 md:py-6">
+                            <span
+                                class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Business</span>
+                            <h2
+                                class="font-mukta font-bold text-xl md:text-3xl text-gray-700 mb-2 transition duration-200 group-hover:text-red-600">
+                                विश्वका ३८ देश, जहाँ
+                                नेपालबाट कुनै वस्तु जाँदैन, आयात भने हुन्छ
+
+                            </h2>
+                            <div class="flex items-center mb-2 gap-5">
+                                <time class="text-gray-500 text-xs">Jun 23, 2021 11:45 AM</time>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-yellow-500 inline-flex items-center justify-center">
+                                    <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <path
+                                            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+                                    </svg>
+                                </button>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-blue-600 inline-flex items-center justify-center text-white">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <p class="font-mukta text-sm text-gray-500 leading-6 text-justify md:text-left">काठमाडौं।
+                                विश्वका ३८ वटा देश, जहाँ नेपालबाट कुनै पनि वस्तु निर्यात हुँदैन, आयात भने हुन्छ। भन्सार
+                                विभागका अनुसार ती ३८ देशबाट चालु आर्थिक वर्ष २०७७÷७८को पहिलो ११ महिनामा १२ अर्ब ७९ करोड
+                                ९७ लाख ५४ हजार रुपैयाँको वस्तु नेपाल भित्रिएको छ। ती देशहरुमा
+                                पराग्वे,जोर्डन,ग्वाँटेमाला,बेलारुस,दक्षिण कोरिया,बोलेभिया,बेनिन, बोन,मलावी,
+                                स्वाजील्याण्ड,कोस्टारिका,डोनेनिकन रिपब्लिक,पपुवा न्युगिनी,सर्विया, माल्दोभा,कोमोरस,
+                                मंगोलिया,ग्रेनाडा, अमेरिकन सामोआ, कजाकास्तान,सियरा लियोन,इक्वेडर,बोत्स्वाना, निकारागुवा,
+                                एल साल्भाडोर,अल्बानिया, घाना,मालीलगायत छन्।
+
+                            </p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="swiper-slide max-w-6xl mx-auto  flex items-center">
+                    <!-- Fullwidth Ad -->
+                    <div class="my-6">
+                        <a href="">
+                            <img class="max-w-full"
+                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/06/ONLINE-KHABAR-1230-X-100_1.gif">
+                        </a>
+                    </div>
+                    <!-- Fullwidth Ad End -->
+                </div>
+
+                <div class="swiper-slide max-w-6xl mx-auto  flex items-center">
+                    <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
+                        <figure
+                            class="w-full md:w-5/12 h-84 md:h-96 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                            <a href="">
+                                <img data-swiper-parallax="300" class="w-full h-full object-cover"
+                                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/01/devendra-raj-pandey-4.jpg">
+                            </a>
+                        </figure>
+                        <div class="flex-1 py-4 px-4 md:pr-6 md:py-6">
+                            <span
+                                class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Politics</span>
+                            <h2 class="font-mukta font-bold text-xl md:text-3xl text-gray-700 mb-2">
+                                <a href="" class="transition duration-200 group-hover:text-red-600">प्रधानमन्त्री को
+                                    बन्यो होइन, विधिको शासन ठूलो हो</a>
+                            </h2>
+                            <div class="flex items-center mb-2 gap-5">
+                                <time class="text-gray-500 text-xs">July 14, 2021 8:05 AM</time>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-yellow-500 inline-flex items-center justify-center">
+                                    <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <path
+                                            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+                                    </svg>
+                                </button>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-blue-600 inline-flex items-center justify-center text-white">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <p class="font-mukta text-sm text-gray-500 leading-6 text-justify md:text-left">सर्वोच्च
+                                अदालतमा एक महिनासम्म चलेको मुद्दाको फैसलाले मंगलबार साँझ शेरबहादुर देउवा प्रधानमन्त्री
+                                भएका छन् । केपी शर्मा ओली बहिगर्मन भई देउवा सत्ताको केन्द्रमा आएका छन् । तर यहाँ व्यक्ति
+                                विशेषको कुरा गर्न आवश्यक नै छैन, किनभने कोही हामीले नचिनेको व्यक्ति हुँदै होइन ! सबैले
+                                चिनेजानेकै मानिस पदमा दोहोरिरहेका छन् ।
+                            </p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="swiper-slide max-w-6xl mx-auto  flex items-center">
+                    <!-- Fullwidth Ad -->
+                    <div class="my-6">
+                        <a href="">
+                            <img class="max-w-full"
+                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/06/ONLINE-KHABAR-1230-X-100_1.gif">
+                        </a>
+                    </div>
+                    <!-- Fullwidth Ad End -->
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <div x-cloak :class="isSideMenuOpen ? 'absolute' : 'hidden'" @click="closeSideMenu()"
+        class="backdrop absolute inset-0 bg-black bg-opacity-40 transition-all duration-200 z-40"></div>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function data() {
+            return {
+                isSideMenuOpen: false,
+                openSideMenu() {
+                    this.isSideMenuOpen = true;
+                },
+                closeSideMenu() {
+                    this.isSideMenuOpen = false;
+                },
+                toggleSideMenu() {
+                    this.isSideMenuOpen = !this.isSideMenuOpen;
+                }
+            }
+        }
+
+        var swiper = new Swiper(".mySwiper", {
+            direction: "vertical",
+            autoHeight: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            grabCursor: true,
+            speed: 600,
+            effect: "slide",
+            parallax: true,
+            mousewheel: {
+                releaseOnEdges: true,
+            },
+        });
+
+        swiper.on('reachEnd', () => {
+            // fetch articles here
+            axios.post('/api/articles', {
+                // post params here
+                // get related articles to current post
+            })
+                .then(function ({ data }) {
+                    // handle success
+                    console.log(data);
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                
+        });
+
+    </script>
+</body>
+
+</html>

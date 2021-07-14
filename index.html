@@ -19,6 +19,8 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        [x-cloak] { opacity: 0; transition: all 300ms ease-in-out; }
+
         @media screen and (min-width: 1024px) {
             .categorySlider {
                 overflow: inherit;
@@ -64,8 +66,7 @@
     </style>
 </head>
 
-<body class="antialised relative bg-gray-50 " x-data="data()">
-    <div id="sentinel"></div>
+<body x-cloak class="antialised relative bg-gray-50 " x-data="data()">
 
     <!-- Header start -->
     <header class="bg-white shadow mb-8">
@@ -153,7 +154,7 @@
 
     <!-- Side Menu -->
     <div :class="isSideMenuOpen ? 'translate-x-0' : 'translate-x-full'" 
-        class="fixed top-0 right-0 w-full md:w-72 min-h-screen bg-white z-50 shadow-lg transform -translate-x-full transition-all duration-200 ease-in-out" style="display: none;" :style="isSideMenuOpen ? 'display:block':''">
+        class="fixed top-0 right-0 w-full md:w-72 min-h-screen bg-white z-50 shadow-lg transform  transition-all duration-200 ease-in-out" style="display: none;" :style="isSideMenuOpen ? 'display:block':''">
         <div class="flex flex-wrap justify-between ">
             <!-- Logo SideMenu -->
             <a href="" class="px-2 py-1">
@@ -490,24 +491,23 @@
         </div>
         <!-- Fullwidth Ad End -->
 
-        <div class="swiper-container mySwiper min-h-screen max-h-screen overflow-hidden" style="position: sticky;top:60px;">
+        <div class="swiper-container mySwiper min-h-screen max-h-screen overflow-hidden" style="position: sticky;top:0px;">
             <div class="swiper-wrapper">
                 <div class="swiper-slide flex items-center">
                     <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
                         <figure
-                            class="w-full md:w-5/12 h-84 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                            class="w-full md:w-5/12 h-84 md:h-96 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
                             <a href="">
                                 <img class="w-full h-full object-cover"
-                                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Chandrapur-Jhadap-900-300x200.jpg">
+                                    src="https://img.dekhapadhi.de/uploads/posts/1610095412.South%20Korea%20-%20Republic%20-%20city%20life.jpeg">
                             </a>
                         </figure>
                         <div class="flex-1 py-4 px-4 md:py-6">
                             <span
-                                class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Technology</span>
-                            <h2 class="font-semibold text-2xl text-gray-700 mb-2">
-                                <a href="" class="transition duration-200 group-hover:text-red-600">तपाईंको कम्प्युटरमा
-                                    विन्डोज
-                                    ११ चल्छ कि चल्दैन ? यसरी थाहा पाउनुहोस्</a>
+                                class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Business</span>
+                            <h2 class="font-mukta font-bold text-xl md:text-3xl text-gray-700 mb-2">
+                                <a href="" class="transition duration-200 group-hover:text-red-600">विश्वका ३८ देश, जहाँ नेपालबाट कुनै वस्तु जाँदैन, आयात भने हुन्छ
+                                </a>
                             </h2>
                             <div class="flex items-center mb-2 gap-5">
                                 <time class="text-gray-500 text-xs">Jun 23, 2021 11:45 AM</time>
@@ -530,18 +530,8 @@
                                 </button>
                             </div>
 
-                            <p class="text-sm text-gray-500 leading-6 text-justify md:text-left">माइक्रोसफ्टले गत
-                                बिहीबार आफ्नो नयाँ संस्करणको
-                                विन्डोज
-                                अपरेटिङ सिस्टम विन्डोज ११ सार्वजनिक गर्‍यो । कम्पनीका अनुसार यो नयाँ अपरेटिङ सिस्टम
-                                विद्यमान
-                                विन्डोज १० कम्प्युटरमा नि:शुल्क रुपमा अपग्रेड गर्न सकिनेछ । यो अंग्रेजी वर्षको
-                                अन्त्यसम्ममा
-                                विन्डोज ११ आम प्रयोगकर्ताका लागि उपलब्ध हुने बताइएको छ । विन्डोज ११ अपरेटिङ सिस्टम
-                                चल्नका लागि
-                                कम्प्युटरमा निश्चित न्यूनतम हार्डवेयर हुनैपर्नेछ । अर्थात् विन्डोज ११ चल्नका लागि
-                                तपाईंको
-                                ल्यापटप तथा डेस्कटपमा ४ जिबीको र्याम, ६४ जिबीको स्टोरेज तथा ६४ बिटको प्रोसेसर चाहिन्छ ।
+                            <p class="font-mukta text-sm text-gray-500 leading-6 text-justify md:text-left">काठमाडौं। विश्वका ३८ वटा देश, जहाँ नेपालबाट कुनै पनि वस्तु निर्यात हुँदैन, आयात भने हुन्छ। भन्सार विभागका अनुसार ती ३८ देशबाट चालु आर्थिक वर्ष २०७७÷७८को पहिलो ११ महिनामा १२ अर्ब ७९ करोड ९७ लाख ५४ हजार रुपैयाँको वस्तु नेपाल भित्रिएको छ। ती देशहरुमा पराग्वे,जोर्डन,ग्वाँटेमाला,बेलारुस,दक्षिण कोरिया,बोलेभिया,बेनिन, बोन,मलावी, स्वाजील्याण्ड,कोस्टारिका,डोनेनिकन रिपब्लिक,पपुवा न्युगिनी,सर्विया, माल्दोभा,कोमोरस, मंगोलिया,ग्रेनाडा, अमेरिकन सामोआ, कजाकास्तान,सियरा लियोन,इक्वेडर,बोत्स्वाना, निकारागुवा, एल साल्भाडोर,अल्बानिया, घाना,मालीलगायत छन्।
+
                             </p>
                         </div>
                     </article>
@@ -549,7 +539,7 @@
                 <div class="swiper-slide flex items-center">
                     <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
                         <figure
-                            class="w-full md:w-5/12 h-84 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                            class="w-full md:w-5/12 h-84 md:h-96 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
                             <a href="">
                                 <img class="w-full h-full object-cover"
                                     src="https://www.onlinekhabar.com/wp-content/uploads/2021/01/devendra-raj-pandey-4.jpg">
@@ -558,7 +548,7 @@
                         <div class="flex-1 py-4 px-4 md:py-6">
                             <span
                                 class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Politics</span>
-                            <h2 class="font-semibold text-2xl text-gray-700 mb-2">
+                            <h2 class="font-mukta font-bold text-xl md:text-3xl text-gray-700 mb-2">
                                 <a href="" class="transition duration-200 group-hover:text-red-600">प्रधानमन्त्री को बन्यो होइन, विधिको शासन ठूलो हो</a>
                             </h2>
                             <div class="flex items-center mb-2 gap-5">
@@ -582,7 +572,7 @@
                                 </button>
                             </div>
 
-                            <p class="text-sm text-gray-500 leading-6 text-justify md:text-left">सर्वोच्च अदालतमा एक महिनासम्म चलेको मुद्दाको फैसलाले मंगलबार साँझ शेरबहादुर देउवा प्रधानमन्त्री भएका छन् । केपी शर्मा ओली बहिगर्मन भई देउवा सत्ताको केन्द्रमा आएका छन् । तर यहाँ व्यक्ति विशेषको कुरा गर्न आवश्यक नै छैन, किनभने कोही हामीले नचिनेको व्यक्ति हुँदै होइन ! सबैले चिनेजानेकै मानिस पदमा दोहोरिरहेका छन् । 
+                            <p class="font-mukta text-sm text-gray-500 leading-6 text-justify md:text-left">सर्वोच्च अदालतमा एक महिनासम्म चलेको मुद्दाको फैसलाले मंगलबार साँझ शेरबहादुर देउवा प्रधानमन्त्री भएका छन् । केपी शर्मा ओली बहिगर्मन भई देउवा सत्ताको केन्द्रमा आएका छन् । तर यहाँ व्यक्ति विशेषको कुरा गर्न आवश्यक नै छैन, किनभने कोही हामीले नचिनेको व्यक्ति हुँदै होइन ! सबैले चिनेजानेकै मानिस पदमा दोहोरिरहेका छन् । 
                             </p>
                         </div>
                     </article>
@@ -658,7 +648,7 @@
             direction: "vertical",
             autoHeight: true,
             slidesPerView: 1,
-            // spaceBetween: 30,
+            spaceBetween: 30,
             grabCursor: true,
             speed: 600,
             effect: "slide",
