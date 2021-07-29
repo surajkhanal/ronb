@@ -4,4 +4,4 @@ mix.postCss('css/tailwind.css', 'tailwind.css', [
     require('tailwindcss')
 ]);
 
-mix.browserSync('localhost/RONB');
+// mix.browserSync('localhost/RONB');

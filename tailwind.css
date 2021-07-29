@@ -1025,9 +1025,6 @@ video {
 	outline: 2px solid transparent;
 	outline-offset: 2px;
 }
-.ring-offset-8 {
-	--tw-ring-offset-width: 8px;
-}
 .filter {
 	filter: var(--tw-filter);
 }
