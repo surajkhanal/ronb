@@ -139,27 +139,38 @@
 </div>
 <!-- Side Menu -->
 
-<!-- Side Menu -->
+<!-- Comment Sidebar -->
 <div :class="isCommentOpen ? 'translate-x-0' : 'translate-x-full'"
-     class="fixed top-0 right-0 w-full md:w-72 min-h-screen bg-white z-50 shadow-lg transform  transition-all duration-200 ease-in-out"
+     class="fixed top-0 right-0 w-full h-full md:w-80 min-h-screen bg-white z-50 shadow-lg transform  transition-all duration-200 ease-in-out overflow-auto"
      style="display: none;" :style="isSideMenuOpen ? 'display:block':''">
-    <div class="flex flex-wrap justify-between ">
-        <!-- Logo SideMenu -->
-        <a href="" class="px-2 py-1">
-            <img class="w-12 h-12" src="./img/logo.jpg">
-        </a>
-        <!-- Logo SideMenu End -->
-        <button @click="closeSideMenu()"
-                class="w-12 h-12 bg-red-600 text-white inline-flex items-center justify-center ">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                </path>
-            </svg>
-        </button>
+    <div class="sticky top-0 bg-white z-20">
+        <div class="flex flex-wrap justify-between bg-white">
+            <!-- Logo SideMenu -->
+            <a href="" class="px-2 py-1">
+                <img class="w-12 h-12" src="./img/logo.jpg">
+            </a>
+            <!-- Logo SideMenu End -->
+            <button @click="closeComment()"
+                    class="w-12 h-12 bg-red-600 text-white inline-flex items-center justify-center ">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="px-3 py-3 bg-gray-100">
+            <template x-if="postToComment">
+                <h2 class="font-mukta font-semibold text-md text-gray-800" x-text="postToComment.title"></h2>
+            </template>
+        </div>
+    </div>
+    <div class="px-2 py-2 overflow-auto">
+
+        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="8"></div>
     </div>
 </div>
-<!-- Side Menu -->
+<!-- Comment Sidebar -->
 
 <main class="px-4 md:px-6 lg:px-0 flex-1 ">
 
@@ -183,7 +194,7 @@
                         </h2>
                         <div class="flex items-center mb-2 gap-5">
                             <time class="text-gray-500 text-xs">Jun 23, 2021 11:45 AM</time>
-                            <button
+                            <button @click="openComment()"
                                     class="w-8 h-8 rounded-full bg-yellow-500 inline-flex items-center justify-center">
                                 <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
                                     <path d="M0 0h24v24H0V0z" fill="none"/>
@@ -289,18 +300,22 @@
     </div>
 
 </main>
+<div id="fb-root"></div>
 
-<div x-cloak :class="isSideMenuOpen ? 'absolute' : 'hidden'" @click="closeSideMenu()"
+<div x-cloak :class="isSideMenuOpen || isCommentOpen ? 'absolute' : 'hidden'" @click="closeSideMenu();closeComment()"
      class="backdrop absolute inset-0 bg-black bg-opacity-40 transition-all duration-200 z-40"></div>
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=322372499007009&autoLogAppEvents=1" nonce="f5rlkDlO"></script>
 <script>
     function data() {
         return {
             isSideMenuOpen: false,
             isCommentOpen: false,
+            postToComment: null,
 
             openSideMenu() {
                 this.isSideMenuOpen = true;
@@ -311,8 +326,13 @@
             toggleSideMenu() {
                 this.isSideMenuOpen = !this.isSideMenuOpen;
             },
-            openComment() {
+            openComment(id) {
+                this.postToComment = articles.find((article) => article.id === Number(id));
                 this.isCommentOpen = true;
+            },
+            closeComment() {
+                this.postToComment = null;
+                this.isCommentOpen = false;
             }
         }
     }
@@ -325,11 +345,13 @@
     var swiper = new Swiper(".mySwiper", {
         direction: "vertical",
         autoHeight: true,
+        centeredSlides: true,
         slidesPerView: 1,
-        spaceBetween: 30,
+        spaceBetween: 0,
         grabCursor: true,
         speed: 600,
         effect: "slide",
+        preloadImages: true,
         parallax: true,
         mousewheel: {
             releaseOnEdges: true,
@@ -347,6 +369,7 @@
         const article = articleId && articleMeta.data &&
             articleMeta.data.find((article) => article.id === articleId);
         if(article) {
+            window.document.title = article.title;
             history.replaceState(null, article.title, `/${article.slug}`);
         }
     });
@@ -362,10 +385,20 @@
         fetchArticles(url).then((postData) => {
             Object.assign(articleMeta, postData);
 
-            appendArticleSlides(articleMeta.data);
+            postData.data.forEach(function(post)  {
+                const article = articles.find((article) => article.id == post.id);
+                if(!article) {
+                    articles.push(post);
+                }
+            });
 
+            appendArticleSlides(articleMeta.data);
+            Alpine.discoverUninitializedComponents(function(el){ Alpine.initializeComponent(el) })
             swiper.enable();
-        }).catch((err) => console.log(err));
+        }).catch((err) => {
+            console.log(err)
+            swiper.enable();
+        });
     });
 
     function fetchArticles(url) {
@@ -381,16 +414,15 @@
     }
 
     function appendArticleSlides(posts) {
-        console.log(posts);
 
         const articleSlides = [];
 
         posts.forEach(function (article) {
             articleSlides.push(`
-                <div class="swiper-slide max-w-6xl mx-auto  flex items-center" data-id="${article.id}">
-                        <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
+                <div class="swiper-slide max-w-6xl mx-auto flex items-center" data-id="${article.id}">
+                        <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group w-full bg-white shadow-xl rounded-xl">
                             <figure
-                                class="relative w-full md:w-5/12 h-84 md:h-96 bg-white overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95 ">
+                                class="relative w-full md:w-5/12 h-68 md:h-96 bg-white overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95 ">
                                 <img data-swiper-parallax="300" class="relative w-full h-full object-cover"
                                     src="${article.image}" loading="lazy">
                             </figure>
@@ -402,7 +434,7 @@
                                 </h2>
                                 <div class="flex items-center mb-2 gap-5">
                                     <time class="text-gray-500 text-xs">${article.date} ${article.time}</time>
-                                    <button
+                                    <button @click="openComment(${article.id})"
                                         class="w-8 h-8 rounded-full bg-yellow-500 inline-flex items-center justify-center">
                                         <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
                                             <path d="M0 0h24v24H0V0z" fill="none" />
@@ -421,9 +453,7 @@
                                     </button>
                                 </div>
     
-                                <div class="font-mukta text-sm text-gray-500 leading-6 text-justify md:text-left">काठमाडौं।
-                                    ${article.description}
-                                </div>
+                                <div class="font-mukta text-base text-gray-500 leading-6 text-justify md:text-left line-clamp-4 md:line-clamp-8" >${article.description}</div>
                             </div>
                         </article>
                     </div>
