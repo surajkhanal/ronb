@@ -11,9 +11,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Mukta:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./tailwind.css">
+
+    <script defer type='text/javascript'
+        src='https://platform-api.sharethis.com/js/sharethis.js#property=6103f45a32807100124a1156&product=inline-share-buttons'
+        async='async'></script>
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -168,6 +172,42 @@
     </div>
     <!-- Side Menu -->
 
+    <!-- Comment Sidebar -->
+    <div :class="isCommentOpen ? 'translate-x-0' : 'translate-x-full'"
+        class="fixed top-0 right-0 w-full h-full md:w-80 min-h-screen bg-white z-50 shadow-lg transform  transition-all duration-200 ease-in-out overflow-auto"
+        style="display: none;" :style="isSideMenuOpen ? 'display:block':''">
+        <div class="sticky top-0 bg-white z-20">
+            <div class="flex flex-wrap justify-between bg-white">
+                <!-- Logo SideMenu -->
+                <a href="" class="px-2 py-1">
+                    <img class="w-12 h-12" src="./img/logo.jpg">
+                </a>
+                <!-- Logo SideMenu End -->
+                <button @click="closeComment()"
+                    class="w-12 h-12 bg-red-600 text-white inline-flex items-center justify-center ">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="px-3 py-3 bg-gray-100">
+                <template x-if="postToComment">
+                    <h2 class="font-mukta font-semibold text-md text-gray-800" x-text="postToComment.title"></h2>
+                </template>
+            </div>
+        </div>
+        <div class="px-2 py-2 overflow-auto" >
+            <!-- <div id="fb-comments" class="fb-comments" x-show="postToComment" data-lazy="true" data-href="https://ronbpost.com/news/init.html" data-width="" data-numposts="5"></div> -->
+            <template x-if="postToComment">
+                <div class="fb-comments" x-bind:data-href="'https://ronbpost.com/news/'+postToComment.slug+'.html'"
+                data-width="100%" data-numposts="5"></div>
+            </template>
+        </div>
+    </div>
+    <!-- Comment Sidebar -->
+
     <main class="max-w-6xl mx-auto px-4 md:px-6 lg:px-0">
         <!-- Main News Start-->
         <article class="bg-white shadow relative overflow-hidden mb-8">
@@ -180,20 +220,28 @@
                         काठमाडौं उपत्यकामा चल्न थाले सार्वजनिक बस
                     </a>
                 </h1>
-                <div class="inline-flex gap-6">
+                <div class="inline-flex gap-6" x-data="{shareOpen: false}">
                     <span class="inline-flex items-center gap-1 text-gray-500 text-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         29 min ago</span>
-                    <button class="inline-flex items-center gap-1 text-gray-500 text-sm">
+                    <button @click="shareOpen = !shareOpen" class="inline-flex items-center gap-1 text-gray-500 text-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
                             </path>
                         </svg>
                         Share</button>
+                        <div x-show="shareOpen" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 transform scale-90"
+                            x-transition:enter-end="opacity-100 transform scale-100"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 transform scale-100"
+                            x-transition:leave-end="opacity-0 transform scale-90">
+                            <div class="sharethis-inline-share-buttons" data-url="https://ronbpost.com/replace-link-here.html"> </div>
+                        </div>
                 </div>
             </header>
             <figure class="mb-0 bg-gray-50 max-h-60 overflow-hidden rounded-md">
@@ -221,6 +269,9 @@
         <!-- Category News Slider -->
         <div class="swiper-container categorySlider">
             <div class="swiper-wrapper">
+
+                <!-- Start Category Slide loop here-->
+
                 <div class="swiper-slide">
                     <!-- Category Block Start -->
                     <div class="category">
@@ -238,233 +289,53 @@
                             </a>
                         </div>
                         <!-- Category Title End -->
-                        <template x-for="(article, index) in articles">
+                        <!-- Start category post loop here -->
                             <div>
-                                <template x-if="index == 0">
+                                <!-- @if($loop->index == 0) -->
                                     <!-- Article Big -->
                                     <article id="post-11" class="relative mb-6 -mt-2">
                                         <figure class="mb-0 overflow-hidden rounded-xl h-56">
                                             <img class="w-full h-full object-cover"
                                                 src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
-                                            <span class="absolute inset-0 bg-black opacity-50 rounded-xl"></span>
+                                            <span class="absolute inset-0 bg-black bg-opacity-30 rounded-xl"></span>
                                         </figure>
                                         <div class="absolute bottom-0 px-4 py-4">
                                             <span
-                                                class="font-light text-xs text-white bg-white rounded px-1 pb-0.5 bg-opacity-30 text-opacity-80 backdrop-filter backdrop-blur-lg mix-blend-overlay">10min
+                                                class="font-mukta font-light inline-block text-xs text-white bg-white rounded px-1 pb-0.5 mb-1 bg-opacity-30 backdrop-filter backdrop-blur-xl ">10min
                                                 ago</span>
-                                            <h2 class="font-mukta font-semibold text-lg text-white"><a href=""
+                                            <h2 class="font-mukta font-semibold text-lg text-white"><a href="/"
                                                     class="">बीपी प्रतिष्ठानमा अनियमितता बढेको भन्दै
                                                     शिक्षक-कर्मचारी रिले अनसनमा</a></h2>
                                         </div>
                                     </article>
                                     <!-- Article Big End -->
-                                </template>
+                                
+                                <!-- @else -->
 
                                 <!-- Article Small -->
-                                <template x-if="index > 0">
                                     <article class="flex flex-wrap gap-4 group mb-6">
                                         <figure
                                             class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
                                             <a href="">
-                                                <img class="w-full h-full object-cover" x-bind:src="article.thumb">
+                                                <img class="w-full h-full object-cover" src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
                                             </a>
                                         </figure>
                                         <div class="flex-1">
                                             <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a
                                                     href="" class="transition duration-200 group-hover:text-red-600"
-                                                    x-text="article.title"></a></h2>
+                                                    >Article Title here</a></h2>
                                         </div>
                                     </article>
-                                </template>
                                 <!-- Article Small End -->
-                            </div>
-                        </template>
-                    </div>
-                    <!-- Category Block End -->
-                </div>
-                <div class="swiper-slide">
-                    <!-- Category Block Start -->
-                    <div class="category">
-                        <!-- Category Title -->
-                        <div
-                            class="flex items-center justify-between px-4 py-4 bg-white shadow-md rounded-tl-xl rounded-tr-xl">
-                            <h2 class="font-poppins font-bold text-base text-gray-800">प्रदेश १</h2>
-                            <a href="" class="inline-flex items-center gap-1 text-gray-500 hover:text-red-500">
-                                <span class="text-sm">More</span> <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7">
-                                    </path>
-                                </svg>
-                            </a>
-                        </div>
-                        <!-- Category Title End -->
-                        <template x-for="(article, index) in articles">
-                            <div>
-                                <template x-if="index == 0">
-                                    <!-- Article Big -->
-                                    <article id="post-11" class="relative mb-6 -mt-2">
-                                        <figure class="mb-0 overflow-hidden rounded-xl h-56">
-                                            <img class="w-full h-full object-cover"
-                                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
-                                            <span class="absolute inset-0 bg-black opacity-50 rounded-xl"></span>
-                                        </figure>
-                                        <div class="absolute bottom-0 px-4 py-4">
-                                            <span
-                                                class="font-light text-xs text-white bg-white rounded px-1 pb-0.5 bg-opacity-30 text-opacity-80 backdrop-filter backdrop-blur-lg mix-blend-overlay">10min
-                                                ago</span>
-                                            <h2 class="font-mukta font-semibold text-lg text-white"><a href="">बीपी
-                                                    प्रतिष्ठानमा अनियमितता बढेको भन्दै शिक्षक-कर्मचारी रिले अनसनमा</a>
-                                            </h2>
-                                        </div>
-                                    </article>
-                                    <!-- Article Big End -->
-                                </template>
 
-                                <!-- Article Small -->
-                                <template x-if="index > 0">
-                                    <article class="flex flex-wrap gap-4 group mb-6">
-                                        <figure
-                                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
-                                            <a href="">
-                                                <img class="w-full h-full object-cover" x-bind:src="article.thumb">
-                                            </a>
-                                        </figure>
-                                        <div class="flex-1">
-                                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a
-                                                    href="" class="transition duration-200 group-hover:text-red-600"
-                                                    x-text="article.title"></a></h2>
-                                        </div>
-                                    </article>
-                                </template>
-                                <!-- Article Small End -->
+                                <!-- @endif -->
                             </div>
-                        </template>
+                        <!-- End category post loop here -->
                     </div>
                     <!-- Category Block End -->
                 </div>
-                <div class="swiper-slide">
-                    <!-- Category Block Start -->
-                    <div class="category">
-                        <!-- Category Title -->
-                        <div
-                            class="flex items-center justify-between px-4 py-4 bg-white shadow-md rounded-tl-xl rounded-tr-xl">
-                            <h2 class="font-poppins font-bold text-base text-gray-800">प्रदेश १</h2>
-                            <a href="" class="inline-flex items-center gap-1 text-gray-500 hover:text-red-500">
-                                <span class="text-sm">More</span> <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7">
-                                    </path>
-                                </svg>
-                            </a>
-                        </div>
-                        <!-- Category Title End -->
-                        <template x-for="(article, index) in articles">
-                            <div>
-                                <template x-if="index == 0">
-                                    <!-- Article Big -->
-                                    <article id="post-11" class="relative mb-6 -mt-2">
-                                        <figure class="mb-0 overflow-hidden rounded-xl h-56">
-                                            <img class="w-full h-full object-cover"
-                                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
-                                            <span class="absolute inset-0 bg-black opacity-50 rounded-xl"></span>
-                                        </figure>
-                                        <div class="absolute bottom-0 px-4 py-4">
-                                            <span
-                                                class="font-light text-xs text-white bg-white rounded px-1 pb-0.5 bg-opacity-30 text-opacity-80 backdrop-filter backdrop-blur-lg mix-blend-overlay">10min
-                                                ago</span>
-                                            <h2 class="font-mukta font-semibold text-lg text-white"><a href="">बीपी
-                                                    प्रतिष्ठानमा अनियमितता बढेको भन्दै शिक्षक-कर्मचारी रिले अनसनमा</a>
-                                            </h2>
-                                        </div>
-                                    </article>
-                                    <!-- Article Big End -->
-                                </template>
-
-                                <!-- Article Small -->
-                                <template x-if="index > 0">
-                                    <article class="flex flex-wrap gap-4 group mb-6">
-                                        <figure
-                                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
-                                            <a href="">
-                                                <img class="w-full h-full object-cover" x-bind:src="article.thumb">
-                                            </a>
-                                        </figure>
-                                        <div class="flex-1">
-                                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a
-                                                    href="" class="transition duration-200 group-hover:text-red-600"
-                                                    x-text="article.title"></a></h2>
-                                        </div>
-                                    </article>
-                                </template>
-                                <!-- Article Small End -->
-                            </div>
-                        </template>
-                    </div>
-                    <!-- Category Block End -->
-                </div>
-                <div class="swiper-slide">
-                    <!-- Category Block Start -->
-                    <div class="category">
-                        <!-- Category Title -->
-                        <div
-                            class="flex items-center justify-between px-4 py-4 bg-white shadow-md rounded-tl-xl rounded-tr-xl">
-                            <h2 class="font-poppins font-bold text-base text-gray-800">प्रदेश १</h2>
-                            <a href="" class="inline-flex items-center gap-1 text-gray-500 hover:text-red-500">
-                                <span class="text-sm">More</span> <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7">
-                                    </path>
-                                </svg>
-                            </a>
-                        </div>
-                        <!-- Category Title End -->
-                        <template x-for="(article, index) in articles">
-                            <div>
-                                <template x-if="index == 0">
-                                    <!-- Article Big -->
-                                    <article id="post-11" class="relative mb-6 -mt-2">
-                                        <figure class="mb-0 overflow-hidden rounded-xl h-56">
-                                            <img class="w-full h-full object-cover"
-                                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
-                                            <span class="absolute inset-0 bg-black opacity-50 rounded-xl"></span>
-                                        </figure>
-                                        <div class="absolute bottom-0 px-4 py-4">
-                                            <span
-                                                class="font-light text-xs text-white bg-white rounded px-1 pb-0.5 bg-opacity-30 text-opacity-80 backdrop-filter backdrop-blur-lg mix-blend-overlay">10min
-                                                ago</span>
-                                            <h2 class="font-mukta font-semibold text-lg text-white"><a href="">बीपी
-                                                    प्रतिष्ठानमा अनियमितता बढेको भन्दै शिक्षक-कर्मचारी रिले अनसनमा</a>
-                                            </h2>
-                                        </div>
-                                    </article>
-                                    <!-- Article Big End -->
-                                </template>
-
-                                <!-- Article Small -->
-                                <template x-if="index > 0">
-                                    <article class="flex flex-wrap gap-4 group mb-6">
-                                        <figure
-                                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
-                                            <a href="">
-                                                <img class="w-full h-full object-cover" x-bind:src="article.thumb">
-                                            </a>
-                                        </figure>
-                                        <div class="flex-1">
-                                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a
-                                                    href="" class="transition duration-200 group-hover:text-red-600"
-                                                    x-text="article.title"></a></h2>
-                                        </div>
-                                    </article>
-                                </template>
-                                <!-- Article Small End -->
-                            </div>
-                        </template>
-                    </div>
-                    <!-- Category Block End -->
-                </div>
+               
+                <!-- End Category Slide loop here -->
 
             </div>
             <div class="swiper-button-next">
@@ -493,92 +364,6 @@
 
         <div class="swiper-container mySwiper min-h-screen max-h-screen overflow-hidden" style="position: sticky;top:0px;">
             <div class="swiper-wrapper">
-                <div class="swiper-slide flex items-center">
-                    <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
-                        <figure
-                            class="w-full md:w-5/12 h-84 md:h-96 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
-                            <a href="">
-                                <img class="w-full h-full object-cover"
-                                    src="https://img.dekhapadhi.de/uploads/posts/1610095412.South%20Korea%20-%20Republic%20-%20city%20life.jpeg">
-                            </a>
-                        </figure>
-                        <div class="flex-1 py-4 px-4 md:py-6">
-                            <span
-                                class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Business</span>
-                            <h2 class="font-mukta font-bold text-xl md:text-3xl text-gray-700 mb-2">
-                                <a href="" class="transition duration-200 group-hover:text-red-600">विश्वका ३८ देश, जहाँ नेपालबाट कुनै वस्तु जाँदैन, आयात भने हुन्छ
-                                </a>
-                            </h2>
-                            <div class="flex items-center mb-2 gap-5">
-                                <time class="text-gray-500 text-xs">Jun 23, 2021 11:45 AM</time>
-                                <button
-                                    class="w-8 h-8 rounded-full bg-yellow-500 inline-flex items-center justify-center">
-                                    <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
-                                        <path d="M0 0h24v24H0V0z" fill="none" />
-                                        <path
-                                            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="w-8 h-8 rounded-full bg-blue-600 inline-flex items-center justify-center text-white">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
-                                        </path>
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <p class="font-mukta text-sm text-gray-500 leading-6 text-justify md:text-left">काठमाडौं। विश्वका ३८ वटा देश, जहाँ नेपालबाट कुनै पनि वस्तु निर्यात हुँदैन, आयात भने हुन्छ। भन्सार विभागका अनुसार ती ३८ देशबाट चालु आर्थिक वर्ष २०७७÷७८को पहिलो ११ महिनामा १२ अर्ब ७९ करोड ९७ लाख ५४ हजार रुपैयाँको वस्तु नेपाल भित्रिएको छ। ती देशहरुमा पराग्वे,जोर्डन,ग्वाँटेमाला,बेलारुस,दक्षिण कोरिया,बोलेभिया,बेनिन, बोन,मलावी, स्वाजील्याण्ड,कोस्टारिका,डोनेनिकन रिपब्लिक,पपुवा न्युगिनी,सर्विया, माल्दोभा,कोमोरस, मंगोलिया,ग्रेनाडा, अमेरिकन सामोआ, कजाकास्तान,सियरा लियोन,इक्वेडर,बोत्स्वाना, निकारागुवा, एल साल्भाडोर,अल्बानिया, घाना,मालीलगायत छन्।
-
-                            </p>
-                        </div>
-                    </article>
-                </div>
-                <div class="swiper-slide flex items-center">
-                    <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
-                        <figure
-                            class="w-full md:w-5/12 h-84 md:h-96 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
-                            <a href="">
-                                <img class="w-full h-full object-cover"
-                                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/01/devendra-raj-pandey-4.jpg">
-                            </a>
-                        </figure>
-                        <div class="flex-1 py-4 px-4 md:py-6">
-                            <span
-                                class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Politics</span>
-                            <h2 class="font-mukta font-bold text-xl md:text-3xl text-gray-700 mb-2">
-                                <a href="" class="transition duration-200 group-hover:text-red-600">प्रधानमन्त्री को बन्यो होइन, विधिको शासन ठूलो हो</a>
-                            </h2>
-                            <div class="flex items-center mb-2 gap-5">
-                                <time class="text-gray-500 text-xs">July 14, 2021 8:05 AM</time>
-                                <button
-                                    class="w-8 h-8 rounded-full bg-yellow-500 inline-flex items-center justify-center">
-                                    <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
-                                        <path d="M0 0h24v24H0V0z" fill="none" />
-                                        <path
-                                            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="w-8 h-8 rounded-full bg-blue-600 inline-flex items-center justify-center text-white">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
-                                        </path>
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <p class="font-mukta text-sm text-gray-500 leading-6 text-justify md:text-left">सर्वोच्च अदालतमा एक महिनासम्म चलेको मुद्दाको फैसलाले मंगलबार साँझ शेरबहादुर देउवा प्रधानमन्त्री भएका छन् । केपी शर्मा ओली बहिगर्मन भई देउवा सत्ताको केन्द्रमा आएका छन् । तर यहाँ व्यक्ति विशेषको कुरा गर्न आवश्यक नै छैन, किनभने कोही हामीले नचिनेको व्यक्ति हुँदै होइन ! सबैले चिनेजानेकै मानिस पदमा दोहोरिरहेका छन् । 
-                            </p>
-                        </div>
-                    </article>
-                </div>
-
-
             </div>
         </div>
 
@@ -587,12 +372,31 @@
     <!-- Footer start-->
     <footer></footer>
     <!-- Footer end -->
-    <div :class="isSideMenuOpen ? 'absolute' : 'hidden'" @click="closeSideMenu()" 
+    <div x-cloak :class="isSideMenuOpen || isCommentOpen ? 'absolute' : 'hidden'"
+        @click="closeSideMenu();closeComment()"
         class="backdrop absolute inset-0 bg-black bg-opacity-40 transition-all duration-200 z-40"></div>
+    <div id="fb-root"></div>
+
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        
+        const api = 'https://ronbpost.com/api';
+        const articleMeta = {};
+
+        window.addEventListener('load', loadFbCommentPlugin);
+
+        function loadFbCommentPlugin() {
+            var resource = document.createElement('script');
+            resource.async = "true";
+            resource.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=322372499007009&autoLogAppEvents=1";
+            resource.nonce = "f5rlkDlO";
+            var script = document.getElementsByTagName('script')[0];
+            script.parentNode.insertBefore(resource, script);
+            console.log('comment loading');
+        };
+
         function data() {
             return {
                 articles: [
@@ -602,6 +406,8 @@
                     { title: 'पर्सामा ८ हजार ६ सय जनालाई भेरोसेलको दोस्रो मात्रा लगाइने', thumb: 'https://www.onlinekhabar.com/wp-content/uploads/2021/07/Vero-cell-vaccine-line-9-300x200.jpg', url: '' },
                 ],
                 isSideMenuOpen: false,
+                isCommentOpen: false,
+                postToComment: null,
                 openSideMenu() {
                     this.isSideMenuOpen = true;
                 },
@@ -610,6 +416,17 @@
                 },
                 toggleSideMenu() {
                     this.isSideMenuOpen = !this.isSideMenuOpen;
+                },
+                openComment(id) {
+                    this.postToComment = swiper.virtual.slides.find((article) => article.id === Number(id));
+                    this.isCommentOpen = true;
+                    setTimeout(() => {
+                        FB.XFBML.parse(document.getElementById('fb-comments'));
+                    }, 100);
+                },
+                closeComment() {
+                    this.postToComment = null;
+                    this.isCommentOpen = false;
                 }
             }
         }
@@ -646,16 +463,17 @@
 
         var swiper = new Swiper(".mySwiper", {
             direction: "vertical",
-            autoHeight: true,
+            autoHeight: false,
+            centeredSlides: false,
             slidesPerView: 1,
             spaceBetween: 30,
             grabCursor: true,
             speed: 600,
-            effect: "slide",
+            effect: "coverflow",
+            preloadImages: true,
+            parallax: true,
             mousewheel: {
                 releaseOnEdges: true,
-                // thresholdTime: 1200,
-                // thresholdDelta: 100,
             },
             breakpoints: {
                 640: {
@@ -664,33 +482,75 @@
                 1020: {
                     spaceBetween: 30
                 },
-            }
+            },
+            virtual: {
+                slides: [
+                    {"id":58, "title":"Child marriage annulled","slug":"2021\/06\/13\/1623555845","description":"<p>A marriage that took place between an underage girl and a boy has been annulled by police. The marriage had taken place between a 21-year-old boy of Sayal rural municipality and 17-year-old girl of Dipayal Silgadhi municipality in the district.&nbsp;<\/p><p>The marriage was annulled based on a complaint filed by the municipal child club of the Dipayal Silgadi, against the marriage of a girl who had not reached the required legal age of 20 above, said information officer at the District Police Office, Doti Indra Bahadur Malla. The marriage was cancelled after it was deemed to be a child marriage.&nbsp;<\/p><p>The girl child was handed over to her parents after the marriage was cancelled. Action will also be initiated against those involved in the illegal act, said chief of the police office, Dan Bahadur Malla.<\/p>","image":"https:\/\/ronbpost.com\/storage\/media\/A5hx80W5nga7oGOxEwjIjKQiNRoHO43CJVKQN2X5.jpg","category_id":null,"publish":"1","admin_id":"1","is_featured":"0","is_trending":"0","main_news":"0","trending":null,"tags":"[]","meta_title":null,"meta_description":null,"type":"national","created_at":"2021-06-13T03:44:05.000000Z","updated_at":"2021-06-13T03:44:05.000000Z","date":"13 Jun, 2021","time":"03:44 AM","categories":[{"id":21,"name":"News","slug":"news","category_id":null,"in_menu":"1","created_at":"2021-06-07T16:22:57.000000Z","updated_at":"2021-06-07T16:22:57.000000Z","order":"0","pivot":{"categoryable_id":"58","category_id":"21","categoryable_type":"App\\Models\\News"}}]},
+                    {"id":58, "title":"Child marriage annulled","slug":"2021\/06\/13\/1623555845","description":"<p>A marriage that took place between an underage girl and a boy has been annulled by police. The marriage had taken place between a 21-year-old boy of Sayal rural municipality and 17-year-old girl of Dipayal Silgadhi municipality in the district.&nbsp;<\/p><p>The marriage was annulled based on a complaint filed by the municipal child club of the Dipayal Silgadi, against the marriage of a girl who had not reached the required legal age of 20 above, said information officer at the District Police Office, Doti Indra Bahadur Malla. The marriage was cancelled after it was deemed to be a child marriage.&nbsp;<\/p><p>The girl child was handed over to her parents after the marriage was cancelled. Action will also be initiated against those involved in the illegal act, said chief of the police office, Dan Bahadur Malla.<\/p>","image":"https:\/\/ronbpost.com\/storage\/media\/A5hx80W5nga7oGOxEwjIjKQiNRoHO43CJVKQN2X5.jpg","category_id":null,"publish":"1","admin_id":"1","is_featured":"0","is_trending":"0","main_news":"0","trending":null,"tags":"[]","meta_title":null,"meta_description":null,"type":"national","created_at":"2021-06-13T03:44:05.000000Z","updated_at":"2021-06-13T03:44:05.000000Z","date":"13 Jun, 2021","time":"03:44 AM","categories":[{"id":21,"name":"News","slug":"news","category_id":null,"in_menu":"1","created_at":"2021-06-07T16:22:57.000000Z","updated_at":"2021-06-07T16:22:57.000000Z","order":"0","pivot":{"categoryable_id":"58","category_id":"21","categoryable_type":"App\\Models\\News"}}]},
+                ],
+                renderSlide: function(slide, index) {
+                    return `<div class="swiper-slide max-w-6xl mx-auto flex items-center" >
+                    <article class="md:flex flex-col md:flex-row flex-wrap md:gap-6 w-full h-full md:h-auto group  bg-white md:shadow-xl md:rounded-xl">
+                        <figure
+                            class="relative w-full md:w-5/12 h-48 md:h-96 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95 ">
+                            <img data-swiper-parallax="300" class="w-full h-full object-cover"
+                                src="${slide.image}" alt="${slide.title}">
+                                ${slide.categories.map((category) => '<span class="absolute bottom-2 left-2 inline-block md:hidden bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">'+category.name+'</span>')}
+                        </figure>
+                        <div class="flex-1 py-4 px-4 md:pr-6 md:py-6">
+                            ${slide.categories.map((category) => '<span class="hidden md:inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">'+category.name+'</span>')}
+                            <h2
+                                class="font-mukta font-bold text-lg sm:text-xl md:text-3xl leading-5 md:leading-tight text-gray-700 mb-2 transition duration-200 ">
+                                ${slide.title}
+                            </h2>
+                            <div class="flex items-center mb-2 gap-3 md:gap-5">
+                                <time class="text-gray-500 text-xs">Jun 23, 2021 11:45 AM</time>
+                                <div class="inline-flex items-center gap-3 transition duration-300">
+                                    <button @click="openComment(${slide.id})"
+                                        title="Open Comment"
+                                        aria-label="Open Comment"
+                                        class="h-8 px-3 rounded-full bg-yellow-500 inline-flex items-center justify-center transition duration-200 hover:bg-yellow-600">
+                                        <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                                            <path d="M0 0h24v24H0V0z" fill="none" />
+                                            <path
+                                                d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+                                        </svg>
+                                        <span class="hidden md:inline ml-1 text-xs text-white">Comment</span>
+                                    </button>
+                                    <div class="inline-flex gap-3" x-data="{shareOpen: false}">
+                                        <button @click="shareOpen = !shareOpen"
+                                            title="Share"
+                                            aria-label="Share"
+                                            class="h-8 px-3 rounded-full bg-blue-600 inline-flex items-center justify-center text-white transition duration-200 hover:bg-blue-700">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                                                </path>
+                                            </svg>
+                                            <span class="hidden md:inline ml-1 text-xs text-white">Share</span>
+                                        </button>
+                                        <div x-show="shareOpen" x-transition:enter="transition ease-out duration-300"
+                                            x-transition:enter-start="opacity-0 transform scale-90"
+                                            x-transition:enter-end="opacity-100 transform scale-100"
+                                            x-transition:leave="transition ease-in duration-300"
+                                            x-transition:leave-start="opacity-100 transform scale-100"
+                                            x-transition:leave-end="opacity-0 transform scale-90">
+                                            <div class="sharethis-inline-share-buttons" data-url="/news/${slide.slug}.html"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="font-mukta text-sm text-gray-500 leading-6 text-justify md:text-left overflow-auto">${slide.description}</div>
+                        </div>
+                    </article>
+                </div>`;
+                }
+            },
         });
 
-        // window.onscroll = function (ev) {
-        //     if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) window.location = "swiper.html";
-        // };
-
-        // document.body.ontouchmove = function (e) {
-        //     if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) window.location = "swiper.html";
-        // };
-
-        // window.addEventListener('scroll', (event) => {
-        //     const swiperSection = document.querySelector('.mySwiper');
-
-        //     let scrollHeight = window.pageYOffset || document.documentElement.scrollTop;
-        //     let swipeSectionTop = swiperSection.offsetTop;
-
-        //     if((scrollHeight - swipeSectionTop) <= 0) {
-        //         swiperSection.classList.add('fixed', 'top-0');
-        //         swiperSection.classList.remove('hidden');
-        //     } else {
-        //         swiperSection.classList.remove('fixed', 'top-0');
-        //         swiperSection.classList.add('hidden');
-        //     }
-
-        //     console.log(scrollHeight, swipeSectionTop );
-        // });
+        
         const sentinelEl = document.getElementById('sentinel');
         const swiperEl = document.querySelector('.mySwiper');
 
@@ -705,8 +565,45 @@
             }
         }
 
-        // const observer = new window.IntersectionObserver(handler);
-        // observer.observe(sentinelEl);
+        swiper.on('slideChangeTransitionStart', (event) => {
+            if (!event.realIndex) {
+                return;
+            }
+
+            const article = swiper.virtual.slides[event.realIndex];
+            if (article) {
+                window.document.title = article.title;
+                history.replaceState(null, article.title, `/news/${article.slug}.html`);
+            }
+            window.__sharethis__.initialize();
+        });
+
+        swiper.on('reachEnd', () => {
+            swiper.disable();
+
+            const url = articleMeta.current_page && (articleMeta.current_page < articleMeta.to)
+                ? articleMeta.next_page_url : `${api}/news`;
+
+            fetchArticles(url).then((postData) => {
+                Object.assign(articleMeta, postData);
+                swiper.virtual.appendSlide(articleMeta.data);
+                swiper.enable();
+            }).catch((err) => {
+                swiper.enable();
+            });
+        });
+
+        function fetchArticles(url) {
+            return new Promise((resolve, reject) => {
+                axios.get(`${url}`)
+                    .then(function ({ data }) {
+                        resolve(data);
+                    })
+                    .catch(function (error) {
+                        reject(error);
+                    });
+            });
+        }
 
     </script>
 </body>
