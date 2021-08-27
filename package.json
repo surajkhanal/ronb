@@ -6,8 +6,9 @@
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.2.1",
     "autoprefixer": "^10.2.6",
+    "lit": "^2.0.0-rc.3",
     "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4"
+    "tailwindcss": "^2.2.7"
   },
   "devDependencies": {
     "browser-sync": "^2.27.4",

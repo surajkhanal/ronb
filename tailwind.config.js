@@ -1,8 +1,12 @@
 module.exports = {
-  purge: [
-    'index.html',
-    'single.html',
-  ],
+  purge: {
+    content: [
+      'index.html',
+      'single.html',
+      'contact.html',
+      'app.js',
+    ],
+  },
   mode: 'jit',
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -16,11 +20,14 @@ module.exports = {
         8: '8',
         9: '9',
         10: '10',
-      }
+      },
+
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      animation: ['group-hover'],
+    },
   },
-  plugins: [ require('@tailwindcss/line-clamp'),],
+  plugins: [require('@tailwindcss/line-clamp'),],
 }
