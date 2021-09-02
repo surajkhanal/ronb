@@ -5,32 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Meta Tags — Preview, Edit and Generate">
-    <meta name="description"
-        content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ronbpost.com/">
-    <meta property="og:title" content="Meta Tags — Preview, Edit and Generate">
-    <meta property="og:description"
-        content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
-    <meta property="og:image"
-        content="https://ronbpost.com/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ronbpost.com/">
-    <meta property="twitter:title" content="Meta Tags — Preview, Edit and Generate">
-    <meta property="twitter:description"
-        content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
-    <meta property="twitter:image"
-        content="https://ronbpost.com/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
-
     <title>Routine of Nepal Banda</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -38,13 +13,24 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./tailwind.css">
+
+    <script defer type='text/javascript'
+        src='https://platform-api.sharethis.com/js/sharethis.js#property=6103f45a32807100124a1156&product=inline-share-buttons'
+        async='async'></script>
+
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .swiper-container {
-            overflow-x: inherit;
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
         }
 
         [x-cloak] {
@@ -52,16 +38,13 @@
             transition: all 300ms ease-in-out;
         }
     </style>
-    <script type='text/javascript'
-        src='https://platform-api.sharethis.com/js/sharethis.js#property=6103f45a32807100124a1156&product=inline-share-buttons'
-        async='async'></script>
 </head>
 
-<body x-cloak class="antialised relative bg-gray-50 min-h-screen max-h-screen flex flex-col overflow-hidden"
-    x-data="data()">
+<body x-cloak class="antialised relative bg-gray-50 overflow-x-hidden" x-data="data()">
 
     <!-- Header start -->
-    <header class="bg-white shadow md:fixed inset-x-0 top-0 z-40">
+    <header class="bg-white shadow mb-8 sticky transform  transition duration-300 z-20"
+        :class="{'top-0 translate-y-0 ': stickyHeader, '-translate-y-full': !stickyHeader}" x-init="sticky()">
         <div class="max-w-6xl mx-auto flex items-center">
             <!-- Logo -->
             <a href="" class="px-3 md:px-0">
@@ -194,122 +177,187 @@
             </div>
         </div>
         <div class="px-2 py-2 overflow-auto">
-
-            <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
-                data-width="100%" data-numposts="8"></div>
+            <!-- <div id="fb-comments" class="fb-comments" x-show="postToComment" data-lazy="true" data-href="https://ronbpost.com/news/init.html" data-width="" data-numposts="5"></div> -->
+            <template x-if="postToComment">
+                <div class="fb-comments" x-bind:data-href="'https://ronbpost.com/news/'+postToComment.slug+'.html'"
+                    data-width="100%" data-numposts="5"></div>
+            </template>
         </div>
     </div>
     <!-- Comment Sidebar -->
 
-    <main class="px-4 md:px-6 lg:px-0 flex-1 ">
+    <main class="max-w-6xl mx-auto px-4 md:px-6 lg:px-0">
+        <!-- Fullwidth Ad -->
+        <div class="my-6">
+            <a href="">
+                <img class="max-w-full"
+                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/06/ONLINE-KHABAR-1230-X-100_1.gif">
+            </a>
+        </div>
+        <!-- Fullwidth Ad End -->
+        
+        <!-- Single Post Title -->
+        <h1 class="font-mukta font-bold mb-5 text-2xl md:text-5xl text-gray-700 leading-normal">
+            पहिरो हटाउन बुटवल-पाल्पा सडक दुई दिनसम्म दैनिक ११ घण्टा बन्द हुने</h1>
+        <!-- / Single Post Title -->
 
-        <div id="ronb_swiper" class="swiper-container mySwiper min-h-screen max-h-screen transition-all duration-300">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide max-w-6xl mx-auto flex items-center" data-id="1">
-                    <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group  bg-white shadow-xl rounded-xl">
-                        <figure
-                            class="w-full md:w-5/12 h-40 md:h-96 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95 ">
-                            <img data-swiper-parallax="300" class="w-full h-full object-cover"
-                                src="https://img.dekhapadhi.de/uploads/posts/1610095412.South%20Korea%20-%20Republic%20-%20city%20life.jpeg">
-                        </figure>
-                        <div class="flex-1 py-4 px-4 md:pr-6 md:py-6">
-                            <span
-                                class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">Business</span>
-                            <h2
-                                class="font-mukta font-bold text-xl md:text-3xl text-gray-700 mb-2 transition duration-200 ">
-                                विश्वका ३८ देश, जहाँ
-                                नेपालबाट कुनै वस्तु जाँदैन, आयात भने हुन्छ
+        <!-- Fullwidth Ad -->
+        <div class="my-6">
+            <a href="">
+                <img class="max-w-full"
+                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/06/ONLINE-KHABAR-1230-X-100_1.gif">
+            </a>
+        </div>
+        <!-- Fullwidth Ad End -->
 
-                            </h2>
-                            <div class="flex items-center mb-2 gap-5">
-                                <time class="text-gray-500 text-xs">Jun 23, 2021 11:45 AM</time>
-                                <div class="inline-flex items-center gap-3">
-                                    <button @click="openComment()"
-                                        class="h-8 px-3 rounded-full bg-yellow-500 inline-flex items-center justify-center transition duration-200 hover:bg-yellow-600">
-                                        <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
-                                            <path d="M0 0h24v24H0V0z" fill="none" />
-                                            <path
-                                                d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
-                                        </svg>
-                                        <span class="ml-1 text-xs text-white">Comment</span>
-                                    </button>
-                                    <div class="inline-flex gap-3" x-data="{shareOpen: false}">
-                                        <button @click="shareOpen = !shareOpen"
-                                            class="h-8 px-3 rounded-full bg-blue-600 inline-flex items-center justify-center text-white transition duration-200 hover:bg-blue-700">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
-                                                </path>
-                                            </svg>
-                                            <span class="ml-1 text-xs text-white">Share</span>
-                                        </button>
-                                        <div x-show="shareOpen" x-transition:enter="transition ease-out duration-300"
-                                            x-transition:enter-start="opacity-0 transform scale-90"
-                                            x-transition:enter-end="opacity-100 transform scale-100"
-                                            x-transition:leave="transition ease-in duration-300"
-                                            x-transition:leave-start="opacity-100 transform scale-100"
-                                            x-transition:leave-end="opacity-0 transform scale-90">
-                                            <div class="sharethis-inline-share-buttons" data-url="/demo-share-url">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p class="font-mukta text-sm text-gray-500 leading-6 text-justify md:text-left">काठमाडौं।
-                                विश्वका ३८ वटा देश, जहाँ नेपालबाट कुनै पनि वस्तु निर्यात हुँदैन, आयात भने हुन्छ। भन्सार
-                                विभागका अनुसार ती ३८ देशबाट चालु आर्थिक वर्ष २०७७÷७८को पहिलो ११ महिनामा १२ अर्ब ७९ करोड
-                                ९७ लाख ५४ हजार रुपैयाँको वस्तु नेपाल भित्रिएको छ। ती देशहरुमा
-                                पराग्वे,जोर्डन,ग्वाँटेमाला,बेलारुस,दक्षिण कोरिया,बोलेभिया,बेनिन, बोन,मलावी,
-                                स्वाजील्याण्ड,कोस्टारिका,डोनेनिकन रिपब्लिक,पपुवा न्युगिनी,सर्विया, माल्दोभा,कोमोरस,
-                                मंगोलिया,ग्रेनाडा, अमेरिकन सामोआ, कजाकास्तान,सियरा लियोन,इक्वेडर,बोत्स्वाना, निकारागुवा,
-                                एल साल्भाडोर,अल्बानिया, घाना,मालीलगायत छन्।
-
-                            </p>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="swiper-slide max-w-6xl mx-auto  flex items-center">
-                    <!-- Fullwidth Ad -->
-                    <div class="my-6">
-                        <a href="">
-                            <img class="max-w-full"
-                                src="https://www.onlinekhabar.com/wp-content/uploads/2021/06/ONLINE-KHABAR-1230-X-100_1.gif">
-                        </a>
-                    </div>
-                    <!-- Fullwidth Ad End -->
-                </div>
-
-
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-2 mb-4">
+            <div class="inline-flex items-center gap-2">
+                <img src="./img/logo.jpg" class="w-8 h-8">
+                <span class="font-mukta font-medium text-base text-gray-600 mr-2">RONB</span>
+                <span class="font-mukta inline-flex gap-1 text-sm text-gray-500"> <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Jun 23, 2021 11:45 AM मा प्रकाशित </span>
+            </div>
+            <div>
+                <div class="sharethis-inline-share-buttons"
+                            data-url="https://ronbpost.com/replace-link-here.html"> </div>
             </div>
         </div>
 
+        <div class="grid md:grid-cols-12 gap-5">
+            <div class="md:col-span-8">
+                <article class="relative">
+                    <figure class="relative mb-4 overflow-hidden rounded-xl ">
+                        <img class="w-full"
+                            src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
+                        <span class="absolute inset-0 bg-black bg-opacity-20 rounded-xl"></span>
+                    </figure>
+                    <div class="font-mukta content mb-5 prose-lg">
+                        <p>१८ भदौ, बुटवल । पहिरो हटाउन सिद्धार्थ राजमार्ग अन्तर्गतको बुटवल-पाल्पा सडकखण्ड बिहीबारदेखि दुई दिनसम्म दैनिक ११ घण्टा बन्द हुने भएको छ ।
+
+                            सिद्धार्थ राजमार्गको तानसेन नगरपालिका-८ तल्लो डुम्रेमा गएको पहिरो हटाउन बिहीबार र शुक्रबार दुई दिन साँझ ७ बजेदेखि बिहान ६ बजेसम्म सडकमा सवारी आवागमन बन्द गरिएको सडक डिभिजन कार्यालय पाल्पाले जनाएको छ ।</p>
+                        <p>दिउँसोको समयमा भने सडक नियमित सञ्चालन हुनेछ । उक्त अवधिमा अत्यावश्यक बाहेक अन्य सवारीसाधनलाई पूर्ण रूपमा रोक लगाइएको पाल्पाका सहायक प्रमुख जिल्ला अधिकारी शशीधर घिमिरेले बताए ।</p>
+                    </div>
+                    <div class="comment bg-white shadow-sm px-4 py-4 ">
+                        <h2
+                            class="font-mukta font-bold mb-1 text-xl text-gray-700 border-b-2 border-gray-200 leading-normal">
+                            <span class="-mb-0.5 inline-block border-b-2 border-red-600">प्रतिकृया दिनुहोस्</span>
+                        </h2>
+                        <div class="fb-comments" href="https://ronbpost.com/news/postToComment.html"
+                    data-width="100%" data-numposts="5"></div>
+                    </div>  
+                </article>
+            </div>
+            <!-- Sidebar -->
+            <div class="md:col-span-4 ">
+                <div class="flex flex-col gap-4 bg-white shadow-sm px-4 py-4 mb-5">
+                    <h2
+                        class="font-mukta font-bold mb-1 text-xl text-gray-700 border-b-2 border-gray-200 leading-normal">
+                        <span class="-mb-0.5 inline-block border-b-2 border-red-600">सम्बन्धित शिर्षकहरु </span>
+                    </h2>
+                    
+                    <article class="flex flex-wrap gap-4 group ">
+                        <figure
+                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                            <a href="">
+                                <img class="w-full h-full object-cover"
+                                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
+                            </a>
+                        </figure>
+                        <div class="flex-1">
+                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a href=""
+                                    class="transition duration-200 group-hover:text-red-600">प्रतिष्ठानमा अनियमितता
+                                    बढेको भन्दै
+                                    शिक्षक-कर्मचारी रिले अनसनमा</a></h2>
+                        </div>
+                    </article>
+                    <article class="flex flex-wrap gap-4 group ">
+                        <figure
+                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                            <a href="">
+                                <img class="w-full h-full object-cover"
+                                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
+                            </a>
+                        </figure>
+                        <div class="flex-1">
+                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a href=""
+                                    class="transition duration-200 group-hover:text-red-600">प्रतिष्ठानमा अनियमितता
+                                    बढेको भन्दै
+                                    शिक्षक-कर्मचारी रिले अनसनमा</a></h2>
+                        </div>
+                    </article>
+                    <article class="flex flex-wrap gap-4 group ">
+                        <figure
+                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                            <a href="">
+                                <img class="w-full h-full object-cover"
+                                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
+                            </a>
+                        </figure>
+                        <div class="flex-1">
+                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a href=""
+                                    class="transition duration-200 group-hover:text-red-600">प्रतिष्ठानमा अनियमितता
+                                    बढेको भन्दै
+                                    शिक्षक-कर्मचारी रिले अनसनमा</a></h2>
+                        </div>
+                    </article>
+                    <article class="flex flex-wrap gap-4 group ">
+                        <figure
+                            class="w-20 h-20 bg-gray-50 overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95">
+                            <a href="">
+                                <img class="w-full h-full object-cover"
+                                    src="https://www.onlinekhabar.com/wp-content/uploads/2021/07/Pradesh-2-sabha-300x184.jpg">
+                            </a>
+                        </figure>
+                        <div class="flex-1">
+                            <h2 class="font-mukta font-bold text-lg text-gray-700 leading-snug"><a href=""
+                                    class="transition duration-200 group-hover:text-red-600">प्रतिष्ठानमा अनियमितता
+                                    बढेको भन्दै
+                                    शिक्षक-कर्मचारी रिले अनसनमा</a></h2>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <!-- /Sidebar -->
+        </div>
+
+
+
     </main>
+
+    <!-- Footer start-->
+    <footer></footer>
+    <!-- Footer end -->
+
+    <btn-top></btn-top>
+
+    <!-- Backdrop -->
+    <ronb-backdrop x-cloak :class="isSideMenuOpen || isCommentOpen ? '' : 'hidden'"
+        @click="closeSideMenu();closeComment()"></ronb-backdrop>
     <div id="fb-root"></div>
 
-    <div x-cloak :class="isSideMenuOpen || isCommentOpen ? 'absolute' : 'hidden'"
-        @click="closeSideMenu();closeComment()"
-        class="backdrop absolute inset-0 bg-black bg-opacity-40 transition-all duration-200 z-40"></div>
-
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="app.js" defer></script>
     <script>
-        window.addEventListener('load', function () {
-            console.log('page loaded');
+
+        const api = 'https://ronbpost.com/api';
+        const articleMeta = {};
+
+        window.addEventListener('load', loadFbCommentPlugin);
+
+        function loadFbCommentPlugin() {
             var resource = document.createElement('script');
             resource.async = "true";
             resource.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=322372499007009&autoLogAppEvents=1";
             resource.nonce = "f5rlkDlO";
             var script = document.getElementsByTagName('script')[0];
             script.parentNode.insertBefore(resource, script);
-        });
+            console.log('comment loading');
+        };
 
         function data() {
             return {
+                stickyHeader: true,
                 isSideMenuOpen: false,
                 isCommentOpen: false,
                 postToComment: null,
@@ -324,159 +372,33 @@
                     this.isSideMenuOpen = !this.isSideMenuOpen;
                 },
                 openComment(id) {
-                    this.postToComment = articles.find((article) => article.id === Number(id));
+                    this.postToComment = swiper.virtual.slides.find((article) => article.id === Number(id));
                     this.isCommentOpen = true;
+                    setTimeout(() => {
+                        FB.XFBML.parse(document.getElementById('fb-comments'));
+                    }, 100);
                 },
                 closeComment() {
                     this.postToComment = null;
                     this.isCommentOpen = false;
+                },
+                sticky() {
+                    var lastScrollTop = 0;
+                    window.addEventListener("scroll", () => { // or window.addEventListener("scroll"....
+                        var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+                        if (st > lastScrollTop) {
+                            this.stickyHeader = false;
+                            // downscroll code
+                        } else {
+                            this.stickyHeader = true;
+                            // upscroll code
+                        }
+                        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+                    }, false);
                 }
             }
         }
 
-        const api = 'https://ronbpost.com/api';
-
-        const articles = [];
-        const articleMeta = {};
-
-        var swiper = new Swiper(".mySwiper", {
-            direction: "vertical",
-            autoHeight: true,
-            centeredSlides: true,
-            slidesPerView: 1,
-            spaceBetween: 0,
-            grabCursor: true,
-            speed: 600,
-            effect: "coverflow",
-            preloadImages: true,
-            parallax: true,
-            virtual: true,
-            mousewheel: {
-                releaseOnEdges: true,
-            },
-        });
-
-        swiper.on('slideChangeTransitionStart', (event) => {
-            // change URI before going to next slide
-            if (!event.realIndex) {
-                return;
-            }
-            const articleEl = event.slides[event.realIndex];
-            const articleId = Number(articleEl.dataset.id);
-
-            const article = articleId && articleMeta.data &&
-                articleMeta.data.find((article) => article.id === articleId);
-            if (article) {
-                window.document.title = article.title;
-                history.replaceState(null, article.title, `/${article.slug}`);
-            }
-        });
-
-        swiper.on('reachEnd', () => {
-            swiper.disable();
-
-            const url = articleMeta.current_page && (articleMeta.current_page < articleMeta.to)
-                ? articleMeta.next_page_url : `${api}/news`;
-
-            console.log(articleMeta.current_page);
-
-            fetchArticles(url).then((postData) => {
-                Object.assign(articleMeta, postData);
-
-                postData.data.forEach(function (post) {
-                    const article = articles.find((article) => article.id == post.id);
-                    if (!article) {
-                        articles.push(post);
-                    }
-                });
-
-                appendArticleSlides(articleMeta.data);
-
-                // Alpine.discoverUninitializedComponents(function(el){ Alpine.initializeComponent(el) })
-
-                window.__sharethis__.initialize()
-
-                swiper.enable();
-            }).catch((err) => {
-                console.log(err)
-                swiper.enable();
-            });
-        });
-
-        function fetchArticles(url) {
-            return new Promise((resolve, reject) => {
-                axios.get(`${url}`)
-                    .then(function ({ data }) {
-                        resolve(data);
-                    })
-                    .catch(function (error) {
-                        reject(error);
-                    });
-            });
-        }
-
-        function appendArticleSlides(posts) {
-
-            const articleSlides = [];
-
-            posts.forEach(function (article) {
-                articleSlides.push(`
-                <div class="swiper-slide max-w-6xl mx-auto flex items-center" data-id="${article.id}">
-                        <article class="flex flex-col md:flex-row flex-wrap md:gap-6 group w-full bg-white shadow-xl rounded-xl">
-                            <div class="h-full w-full md:w-5/12 inline-flex flex-col">
-                                <figure
-                                class="relative mx-auto h-40 md:h-96 bg-white overflow-hidden rounded-xl transition duration-300 group-hover:opacity-95 ">
-                                    <img data-swiper-parallax="300" class="relative w-full h-full object-cover"
-                                        src="${article.image}" loading="lazy">
-                                </figure>    
-                            </div>
-                            <div class="flex-1 py-4 px-4 md:pr-6 md:py-6">
-                                ${article.categories.map((cat) => '<span class="inline-block mb-3 bg-gradient-to-tr from-red-500 to-yellow-500 text-xs text-white px-2 py-1 rounded-md">' + cat.name + '</span>')}
-                                <h2
-                                    class="font-mukta font-bold text-xl md:text-3xl text-gray-700 mb-2 transition duration-200 group-hover:text-red-600">
-                                    ${article.title}
-                                </h2>
-                                <div  class="flex items-center mb-2 gap-5">
-                                    <time class="text-gray-500 text-xs">${article.date} ${article.time}</time>
-                                    <button @click="openComment(${article.id})"
-                                        class="w-8 h-8 rounded-full bg-yellow-500 inline-flex items-center justify-center">
-                                        <svg class="w-4" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
-                                            <path d="M0 0h24v24H0V0z" fill="none" />
-                                            <path
-                                                d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
-                                        </svg>
-                                    </button>
-                                    <div class="inline-flex gap-5" x-data="{shareOpen: false}">
-                                        <button  @click="shareOpen = !shareOpen"
-                                            class="w-8 h-8 rounded-full bg-blue-600 inline-flex items-center justify-center text-white">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                        <div x-show="shareOpen" 
-                                            x-transition:enter="transition ease-out duration-300"
-                                            x-transition:enter-start="opacity-0 transform scale-90"
-                                            x-transition:enter-end="opacity-100 transform scale-100"
-                                            x-transition:leave="transition ease-in duration-300"
-                                            x-transition:leave-start="opacity-100 transform scale-100"
-                                            x-transition:leave-end="opacity-0 transform scale-90">
-                                                <div class="sharethis-inline-share-buttons" data-url="https://ronb.test/${article.slug}"></div>    
-                                        </div>
-                                    </div>
-                                </div>
-    
-                                <div class="font-mukta text-base text-gray-500 leading-6 text-justify md:text-left md:line-clamp-8" >${article.description}</div>
-                            </div>
-                        </article>
-                    </div>
-                `);
-            });
-
-            swiper.appendSlide(articleSlides);
-        }
 
     </script>
 </body>

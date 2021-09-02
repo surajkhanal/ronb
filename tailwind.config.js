@@ -3,6 +3,7 @@ module.exports = {
     content: [
       'index.html',
       'single.html',
+      'single-plain.html',
       'contact.html',
       'app.js',
     ],
