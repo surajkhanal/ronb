@@ -1838,7 +1838,7 @@ var ButtonScrollTop = /*#__PURE__*/function (_LitElement4) {
   }, {
     key: "render",
     value: function render() {
-      return (0,lit__WEBPACK_IMPORTED_MODULE_0__.html)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<button class=\"w-10 h-10 bg-black text-white fixed bottom-4 right-4 rounded inline-flex items-center justify-center group\" \n            x-data=\"{showBTT: false}\" \n            x-init=\"window.addEventListener('scroll', () => { console.log('sc'); window.pageYOffset > 200 ? (showBTT = true): (showBTT = false) })\" \n            x-show=\"showBTT\"\n            @click=\"window.scrollTo({ top: 0, behavior: 'smooth' })\"\n            x-transition:enter=\"transition duration-200 transform ease-out\"\n            x-transition:enter-start=\"scale-75\"\n            x-transition:leave=\"transition duration-100 transform ease-in\"\n            x-transition:leave-end=\"opacity-0 scale-90\"\n            aria-label=\"Scroll to top\">\n            <svg class=\"w-6 h-6 animate group-hover:animate-bounce\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" d=\"M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z\" clip-rule=\"evenodd\"></path></svg>\n        </button>"])));
+      return (0,lit__WEBPACK_IMPORTED_MODULE_0__.html)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<button class=\"w-10 h-10 bg-black text-white fixed bottom-4 right-4 rounded inline-flex items-center justify-center group\" \n            x-data=\"{showBTT: false}\" \n            x-init=\"window.addEventListener('scroll', () => {  window.pageYOffset > 200 ? (showBTT = true): (showBTT = false) })\" \n            x-show=\"showBTT\"\n            @click=\"window.scrollTo({ top: 0, behavior: 'smooth' })\"\n            x-transition:enter=\"transition duration-200 transform ease-out\"\n            x-transition:enter-start=\"scale-75\"\n            x-transition:leave=\"transition duration-100 transform ease-in\"\n            x-transition:leave-end=\"opacity-0 scale-90\"\n            aria-label=\"Scroll to top\">\n            <svg class=\"w-6 h-6 animate group-hover:animate-bounce\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" d=\"M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z\" clip-rule=\"evenodd\"></path></svg>\n        </button>"])));
     }
   }]);
 
@@ -1871,6 +1871,15 @@ var RONBBackdrop = /*#__PURE__*/function (_LitElement5) {
   return RONBBackdrop;
 }(lit__WEBPACK_IMPORTED_MODULE_0__.LitElement);
 customElements.define('ronb-backdrop', RONBBackdrop);
+var swiperEl = document.querySelector('.mySwiper');
+var observer = new IntersectionObserver(function (entries) {
+  var swipr = entries[0];
+
+  if (!swipr.isIntersecting) {
+    history.replaceState(null, 'Home | RONB', "/");
+  }
+});
+observer.observe(swiperEl);
 
 /***/ }),
 

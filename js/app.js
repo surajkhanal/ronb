@@ -87,7 +87,7 @@ export class ButtonScrollTop extends LitElement {
     render() {
         return html`<button class="w-10 h-10 bg-black text-white fixed bottom-4 right-4 rounded inline-flex items-center justify-center group" 
             x-data="{showBTT: false}" 
-            x-init="window.addEventListener('scroll', () => { console.log('sc'); window.pageYOffset > 200 ? (showBTT = true): (showBTT = false) })" 
+            x-init="window.addEventListener('scroll', () => {  window.pageYOffset > 200 ? (showBTT = true): (showBTT = false) })" 
             x-show="showBTT"
             @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
             x-transition:enter="transition duration-200 transform ease-out"
@@ -96,9 +96,9 @@ export class ButtonScrollTop extends LitElement {
             x-transition:leave-end="opacity-0 scale-90"
             aria-label="Scroll to top">
             <svg class="w-6 h-6 animate group-hover:animate-bounce" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
-        </button>`  
+        </button>`
     }
-} 
+}
 customElements.define('btn-top', ButtonScrollTop);
 
 export class RONBBackdrop extends LitElement {
@@ -113,5 +113,14 @@ export class RONBBackdrop extends LitElement {
     render() {
         return html`<div class="backdrop absolute inset-0 bg-black bg-opacity-10 backdrop-filter backdrop-blur-sm transition-all duration-200 z-40"></div>`
     }
-} 
+}
 customElements.define('ronb-backdrop', RONBBackdrop);
+
+const swiperEl = document.querySelector('.mySwiper');
+const observer = new IntersectionObserver((entries) => {
+    const swipr = entries[0];
+    if (!swipr.isIntersecting) {
+        history.replaceState(null, 'Home | RONB', `/`);
+    }
+});
+observer.observe(swiperEl);
