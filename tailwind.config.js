@@ -5,6 +5,7 @@ module.exports = {
       'single.html',
       'single-plain.html',
       'contact.html',
+      'page.html',
       'app.js',
     ],
   },
